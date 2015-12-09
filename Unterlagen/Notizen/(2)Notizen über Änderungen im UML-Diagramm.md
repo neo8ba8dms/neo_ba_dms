@@ -65,9 +65,13 @@ daher wird Mehrsprachigkeit eher restriktiv behandelt
 >- Konklusion: alles nur Strings, Mehrsprachigkeit wird hier nicht berücksichtigt
 
 ###Änderung 4
-**hinzufügen einer Beziehung zwischen Summary und LanguageCode
+**hinzufügen einer Beziehung zwischen Summary und LanguageCode**
+>- sieht nach einem Fehler aus der korrigiert wird
+>- evtl. so geplant wegen Übersichtlichkeit?
 
-
+###Änderung 5
+**delete ACLGroup**
+>- no security features
 
 
 

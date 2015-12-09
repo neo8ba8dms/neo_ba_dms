@@ -622,10 +622,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_Sc53iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SdJ3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_cg7i8I8KEeOflsmRdRlXPw" name="ACLGroup" type="_sX_SHJ3iEeK0QoEdszo2DA" aggregation="composite" association="_ciV4MI8KEeOflsmRdRlXPw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cg7i8o8KEeOflsmRdRlXPw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cg7i8Y8KEeOflsmRdRlXPw" value="*"/>
-        </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_Qg23wI8UEeOflsmRdRlXPw" name="Person" type="_sXZcQ53iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B8Z6YI8VEeOflsmRdRlXPw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B8idQI8VEeOflsmRdRlXPw" value="*"/>
@@ -641,12 +637,6 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_D7_zkI8VEeOflsmRdRlXPw" name="Organization" type="_sXimRZ3iEeK0QoEdszo2DA" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IZXWwI8VEeOflsmRdRlXPw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IZggsI8VEeOflsmRdRlXPw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_sX_SHJ3iEeK0QoEdszo2DA" name="ACLGroup">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SHZ3iEeK0QoEdszo2DA" name="Description" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SH53iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SIJ3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sX_SLJ3iEeK0QoEdszo2DA" name="Effectivity">
@@ -1436,12 +1426,6 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_IfrJwFw2EeO6FtUl0DlETA" name="Long"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_ciV4MI8KEeOflsmRdRlXPw" name="" memberEnd="_ciV4MY8KEeOflsmRdRlXPw _cg7i8I8KEeOflsmRdRlXPw">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_ciV4MY8KEeOflsmRdRlXPw" name="null" type="_sX2IuJ3iEeK0QoEdszo2DA" association="_ciV4MI8KEeOflsmRdRlXPw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ciV4M48KEeOflsmRdRlXPw" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ciV4Mo8KEeOflsmRdRlXPw" value="1"/>
-        </ownedEnd>
-      </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="__LXvcI8PEeOflsmRdRlXPw" name="DocumentTypeValue">
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vXWnoI8QEeOflsmRdRlXPw" name="Single"/>
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_xXRQ8I8QEeOflsmRdRlXPw" name="CompundDoc"/>
