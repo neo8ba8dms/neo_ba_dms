@@ -75,10 +75,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_Sdp3iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SdZ3iEeK0QoEdszo2DA" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SeZ3iEeK0QoEdszo2DA" name="SecurityLevel" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_SoZ3iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SoJ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Sn53iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_So53iEeK0QoEdszo2DA" name="DocumentVersion" visibility="public" type="_sX_SpJ3iEeK0QoEdszo2DA" aggregation="composite" association="_sYlvbZ3iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYlvbJ3iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYlva53iEeK0QoEdszo2DA" value="*"/>
@@ -674,45 +670,6 @@
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_sX_Sip3iEeK0QoEdszo2DA" name="Confidential"/>
         <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_sX_Si53iEeK0QoEdszo2DA" name="StrictlyConfidential"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_sX_Sep3iEeK0QoEdszo2DA" name="SecurityLevel">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_Se53iEeK0QoEdszo2DA" name="Effectivity" visibility="public" type="_sX_SLJ3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_Sfp3iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SfZ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SfJ3iEeK0QoEdszo2DA" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SgJ3iEeK0QoEdszo2DA" name="Party" visibility="public" type="_sXZcQZ3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_Sg53iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_Sgp3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SgZ3iEeK0QoEdszo2DA" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_ShZ3iEeK0QoEdszo2DA" name="SecurityStatus" visibility="public" type="_sX_Sh53iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SjZ3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Sjp3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_Sj53iEeK0QoEdszo2DA" name="SetDate" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SkZ3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Skp3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_Sk53iEeK0QoEdszo2DA" name="Purpose" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SlZ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Slp3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_Sl53iEeK0QoEdszo2DA" name="BasedOnProcedure" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SmZ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Smp3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_Sm53iEeK0QoEdszo2DA" name="Comments" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SnZ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Snp3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sX_Sfp3iEeK0QoEdszo2DA" memberEnd="_sX_Sf53iEeK0QoEdszo2DA _sX_Se53iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sX_Sf53iEeK0QoEdszo2DA" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" association="_sX_Sfp3iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sX_Sg53iEeK0QoEdszo2DA" memberEnd="_sX_ShJ3iEeK0QoEdszo2DA _sX_SgJ3iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sX_ShJ3iEeK0QoEdszo2DA" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" association="_sX_Sg53iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sX_SoZ3iEeK0QoEdszo2DA" memberEnd="_sX_Sop3iEeK0QoEdszo2DA _sX_SeZ3iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sX_Sop3iEeK0QoEdszo2DA" visibility="public" type="_sXGhQp3iEeK0QoEdszo2DA" association="_sX_SoZ3iEeK0QoEdszo2DA"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sX_SpJ3iEeK0QoEdszo2DA" name="DocumentVersion">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SpZ3iEeK0QoEdszo2DA" name="DocumentVersionId" visibility="public" type="_sXsXnJ3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_SqJ3iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_Sp53iEeK0QoEdszo2DA" value="1"/>
@@ -761,10 +718,6 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sYb-aZ3iEeK0QoEdszo2DA" name="Authorization" visibility="public" type="_sX2IuJ3iEeK0QoEdszo2DA" aggregation="composite" association="_sYb-bJ3iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYb-a53iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYb-ap3iEeK0QoEdszo2DA" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYb-bp3iEeK0QoEdszo2DA" name="SecurityLevel" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" aggregation="composite" association="_sYb-cZ3iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYb-cJ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYb-b53iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sYb-c53iEeK0QoEdszo2DA" name="Delivery" visibility="public" type="_sYb-dJ3iEeK0QoEdszo2DA" aggregation="composite" association="_sYlvT53iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYlvTp3iEeK0QoEdszo2DA"/>
@@ -1144,9 +1097,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sYb-bJ3iEeK0QoEdszo2DA" memberEnd="_sYb-bZ3iEeK0QoEdszo2DA _sYb-aZ3iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sYb-bZ3iEeK0QoEdszo2DA" visibility="public" type="_sX_SpJ3iEeK0QoEdszo2DA" association="_sYb-bJ3iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sYb-cZ3iEeK0QoEdszo2DA" memberEnd="_sYb-cp3iEeK0QoEdszo2DA _sYb-bp3iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sYb-cp3iEeK0QoEdszo2DA" visibility="public" type="_sX_SpJ3iEeK0QoEdszo2DA" association="_sYb-cZ3iEeK0QoEdszo2DA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sYb-dJ3iEeK0QoEdszo2DA" name="Delivery">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sYb-dZ3iEeK0QoEdszo2DA" name="Recipient" visibility="public" type="_sYb-dp3iEeK0QoEdszo2DA" aggregation="composite" association="_sYb-ip3iEeK0QoEdszo2DA">
