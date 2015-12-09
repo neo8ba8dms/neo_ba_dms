@@ -1462,6 +1462,13 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_UxKxYJ6jEeW0bPMMjVfRPQ"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_BoNhgJ65EeWUJ4nXfa8dog" memberEnd="_BoTBEJ65EeWUJ4nXfa8dog _BoUPMJ65EeWUJ4nXfa8dog" navigableOwnedEnd="_BoTBEJ65EeWUJ4nXfa8dog">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BoSaAJ65EeWUJ4nXfa8dog" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BoSaAZ65EeWUJ4nXfa8dog" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_BoTBEJ65EeWUJ4nXfa8dog" name="languagecode" type="_sXsXV53iEeK0QoEdszo2DA" association="_BoNhgJ65EeWUJ4nXfa8dog"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_BoUPMJ65EeWUJ4nXfa8dog" name="summary" type="_sYJDNp3iEeK0QoEdszo2DA" association="_BoNhgJ65EeWUJ4nXfa8dog"/>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_vUyaYZ3iEeK0QoEdszo2DA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vUyaYp3iEeK0QoEdszo2DA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://Papyrus.profile.uml#_vaU6ggEYEeCIz8iAxBJnfA"/>
