@@ -16,6 +16,8 @@ D.h. Änderungen von Änderungen von ... sind möglich.
 Die Commits in Github werden nach folgendem Schema benannt:
 uml-changed(*Referenz auf Änderung*)-->*was wurde getan*
 
+Das UML-Model scheint im initialen Zustand bereits korrumpiert(validate model).
+
 
 ###Allgemeine geplante Änderungen
 - keine Sicherheitsaspekte
@@ -77,9 +79,13 @@ daher wird Mehrsprachigkeit eher restriktiv behandelt
 **lösche AuthorisationSetBy**
 >- keine Sicherheitsfeatures
 
+###Änderung 7
+**lösche SecurityLevel**
+>- keine Sicherheitsfeatures
 
-
-
+###Änderung 8
+**lösche Authorization**
+>- keine Sicherheitsfeatures
 
 
 
