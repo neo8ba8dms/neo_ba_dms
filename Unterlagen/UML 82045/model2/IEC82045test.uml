@@ -75,7 +75,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_Sdp3iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SdZ3iEeK0QoEdszo2DA" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SeZ3iEeK0QoEdszo2DA" name="SecurityLevel" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_SoZ3iEeK0QoEdszo2DA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SeZ3iEeK0QoEdszo2DA" name="SecurityLevel" visibility="public" type="_sX_Sep3iEeK0QoEdszo2DA" association="_sX_SoZ3iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SoJ3iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_Sn53iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
@@ -824,7 +824,7 @@
         <ownedEnd xmi:type="uml:Property" xmi:id="_sYJDJ53iEeK0QoEdszo2DA" visibility="public" type="_sX_SpJ3iEeK0QoEdszo2DA" association="_sYJDJp3iEeK0QoEdszo2DA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sYJDKZ3iEeK0QoEdszo2DA" name="Description">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDKp3iEeK0QoEdszo2DA" name="Title" visibility="public" type="_sYJDK53iEeK0QoEdszo2DA" aggregation="composite" association="_sYJDM53iEeK0QoEdszo2DA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDKp3iEeK0QoEdszo2DA" name="Title" visibility="public" aggregation="composite" association="_sYJDM53iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDMp3iEeK0QoEdszo2DA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDMZ3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
@@ -832,9 +832,9 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDPZ3iEeK0QoEdszo2DA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDPJ3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDQJ3iEeK0QoEdszo2DA" name="KeyWords" visibility="public" type="_sYJDQZ3iEeK0QoEdszo2DA" aggregation="composite" association="_sYJDSZ3iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDSJ3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDR53iEeK0QoEdszo2DA" value="1"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDQJ3iEeK0QoEdszo2DA" name="KeyWords" visibility="public" association="_sYJDSZ3iEeK0QoEdszo2DA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDSJ3iEeK0QoEdszo2DA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDR53iEeK0QoEdszo2DA" value="*"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDS53iEeK0QoEdszo2DA" name="NumberOfPages" visibility="public">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDTZ3iEeK0QoEdszo2DA"/>
@@ -849,12 +849,6 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDVp3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_sYJDK53iEeK0QoEdszo2DA" name="Title">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDLJ3iEeK0QoEdszo2DA" name="LanguageCode" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDLp3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDL53iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sYJDM53iEeK0QoEdszo2DA" memberEnd="_sYJDNJ3iEeK0QoEdszo2DA _sYJDKp3iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sYJDNJ3iEeK0QoEdszo2DA" visibility="public" type="_sYJDKZ3iEeK0QoEdszo2DA" association="_sYJDM53iEeK0QoEdszo2DA"/>
       </packagedElement>
@@ -866,12 +860,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sYJDPp3iEeK0QoEdszo2DA" memberEnd="_sYJDP53iEeK0QoEdszo2DA _sYJDNZ3iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sYJDP53iEeK0QoEdszo2DA" visibility="public" type="_sYJDKZ3iEeK0QoEdszo2DA" association="_sYJDPp3iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_sYJDQZ3iEeK0QoEdszo2DA" name="KeyWords">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sYJDQp3iEeK0QoEdszo2DA" name="LanguageCode" visibility="public">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sYJDRJ3iEeK0QoEdszo2DA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sYJDRZ3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sYJDSZ3iEeK0QoEdszo2DA" memberEnd="_sYJDSp3iEeK0QoEdszo2DA _sYJDQJ3iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sYJDSp3iEeK0QoEdszo2DA" visibility="public" type="_sYJDKZ3iEeK0QoEdszo2DA" association="_sYJDSZ3iEeK0QoEdszo2DA"/>
