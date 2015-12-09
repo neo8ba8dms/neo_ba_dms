@@ -70,10 +70,12 @@ daher wird Mehrsprachigkeit eher restriktiv behandelt
 >- evtl. so geplant wegen Übersichtlichkeit?
 
 ###Änderung 5
-**delete ACLGroup**
->- no security features
+**lösche ACLGroup**
+>- keine Sicherheitsfeatures
 
-
+###Änderung 6
+**lösche AuthorisationSetBy**
+>- keine Sicherheitsfeatures
 
 
 

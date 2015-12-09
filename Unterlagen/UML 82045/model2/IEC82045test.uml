@@ -590,10 +590,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SP53iEeK0QoEdszo2DA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SPp3iEeK0QoEdszo2DA" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SQp3iEeK0QoEdszo2DA" name="AuthorizationSetBy" visibility="public" type="_sX_SQ53iEeK0QoEdszo2DA" aggregation="composite" association="_sX_SS53iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SSp3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SSZ3iEeK0QoEdszo2DA" value="1"/>
-        </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_STZ3iEeK0QoEdszo2DA" name="AccessRight" visibility="public" type="_sX_ST53iEeK0QoEdszo2DA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SW53iEeK0QoEdszo2DA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SXJ3iEeK0QoEdszo2DA" value="1"/>
@@ -659,18 +655,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sX_SQJ3iEeK0QoEdszo2DA" memberEnd="_sX_SQZ3iEeK0QoEdszo2DA _sX_SK53iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sX_SQZ3iEeK0QoEdszo2DA" visibility="public" type="_sX2IuJ3iEeK0QoEdszo2DA" association="_sX_SQJ3iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_sX_SQ53iEeK0QoEdszo2DA" name="AuthorizationSetBy">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_sX_SRJ3iEeK0QoEdszo2DA" name="Party" visibility="public" type="_sXZcQZ3iEeK0QoEdszo2DA" aggregation="composite" association="_sX_SR53iEeK0QoEdszo2DA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sX_SRp3iEeK0QoEdszo2DA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sX_SRZ3iEeK0QoEdszo2DA" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sX_SR53iEeK0QoEdszo2DA" memberEnd="_sX_SSJ3iEeK0QoEdszo2DA _sX_SRJ3iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sX_SSJ3iEeK0QoEdszo2DA" visibility="public" type="_sX_SQ53iEeK0QoEdszo2DA" association="_sX_SR53iEeK0QoEdszo2DA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_sX_SS53iEeK0QoEdszo2DA" memberEnd="_sX_STJ3iEeK0QoEdszo2DA _sX_SQp3iEeK0QoEdszo2DA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_sX_STJ3iEeK0QoEdszo2DA" visibility="public" type="_sX2IuJ3iEeK0QoEdszo2DA" association="_sX_SS53iEeK0QoEdszo2DA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_sX_Sd53iEeK0QoEdszo2DA" memberEnd="_sX_SeJ3iEeK0QoEdszo2DA _sX2It53iEeK0QoEdszo2DA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_sX_SeJ3iEeK0QoEdszo2DA" visibility="public" type="_sXGhQp3iEeK0QoEdszo2DA" association="_sX_Sd53iEeK0QoEdszo2DA"/>
