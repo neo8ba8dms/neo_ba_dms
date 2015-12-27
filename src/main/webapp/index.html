@@ -2,10 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
     <title>Dokumentenmanagementsystem mit Neo4J</title>
 </head>
-<body>
-    <h3>Blub</h3>
+<body ng-app="dmsApp">
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="home">DMS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="documents">Dokumente</a></li>
+            </ul>
+        </div>
+
+    </nav>
+    <div class="container-fluid">
+        <div ui-view></div>
+    </div>
+
+
+
 
 </body>
 </html>

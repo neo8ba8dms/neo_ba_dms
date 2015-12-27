@@ -1,0 +1,17 @@
+{
+  "name": "neo_ba_dms",
+  "homepage": "https://github.com/neo8ba8dms/neo_ba_dms",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "angular-ui-router": "~0.2.15"
+  }
+}
