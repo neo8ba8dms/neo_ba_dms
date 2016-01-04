@@ -1,0 +1,168 @@
+wichtige Frage: Modell frei/intuitiv interpretieren vs genau recherchieren und möglichst exakt mappen
+- EXPRESS lernen ist zu aufwändig für nur diesen Anwendungsfall
+- EXPRESS scheint kaum noch verwendet zu werden
+- Paper von OMG evtl. angeben
+
+-->Folgerung: intuitiv interpretieren
+
+S. 76 bis 82
+
+Anmerkung: in späterem Dokument muss eine Mapping-Strategie angegeben werden, da ja intuitive Interpretation
+
+#(todo) allgemeine Aussagen dazu, warum eigentlich das Modell beschnitten wird
+
+#Beschneidung des Modells
+- von oben nach unten
+- Angaben:  Name, (bleibt oder gelöscht oder geändert), Begründung für jeweilige Entscheidung
+- bei geändert angeben, was geändert wurde
+
+document_relationship_type
+
+
+role_type
+
+
+description_enumeration_type
+
+
+ENTITY document;
+
+
+ENTITY document_id
+
+
+ENTITY document_id_domain
+
+
+ENTITY document_version
+
+
+ENTITY document_version_id
+
+
+ENTITY external_document
+
+
+ENTITY party
+
+
+ENTITY document_relationship
+
+
+ENTITY document_class
+
+
+ENTITY classification_system;
+
+
+ENTITY document_version_relationship;
+
+
+ENTITY logbook_entry;
+
+
+ENTITY person
+
+
+ENTITY party_role;
+
+
+ENTITY contract;
+
+
+ENTITY organization
+
+
+ENTITY project;
+
+
+ENTITY description;
+
+
+ENTITY document_version_external_object_reference_relationship;
+
+
+ENTITY external_object_reference;
+
+
+ENTITY carrier;
+
+
+ENTITY location;
+
+
+ENTITY electronic_address
+
+
+ENTITY postal_address
+
+
+ENTITY address
+
+
+ENTITY effectivity
+
+
+ENTITY dated_effectivity
+
+
+ENTITY time_interval_based_effectivity
+
+
+ENTITY party_relationship;
+
+
+ENTITY stored_document_representation;
+
+
+ENTITY digital_file
+
+
+ENTITY compound_document_file
+
+
+ENTITY document_representation_carrier_relationship;
+
+
+ENTITY medium;
+
+
+ENTITY medium_caracteristics;
+
+
+ENTITY date_and_time;
+
+
+ENTITY document_revision;
+
+
+ENTITY recipient;
+
+
+ENTITY party_in_subscription_list;
+
+
+ENTITY subscription_list;
+
+
+ENTITY document_version_distibution_relationship;
+
+
+ENTITY recipient_action_on_document_version;
+
+
+ENTITY distribution
+
+
+ENTITY RASAD_status;
+
+
+ENTITY RASAD_status_relationship;
+
+
+ENTITY physical_address
+
+
+ENTITY party_to_address_relationship;
+
+
