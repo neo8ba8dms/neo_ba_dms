@@ -17,7 +17,6 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.data.neo4j.server.Neo4jServer;
 
-@Import(RepositoryRestMvcConfiguration.class)
 @SpringBootApplication
 @EnableNeo4jRepositories(basePackages = "org.blub.repository")
 @EnableTransactionManagement
