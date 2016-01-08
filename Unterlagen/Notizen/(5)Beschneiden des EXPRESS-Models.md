@@ -39,7 +39,7 @@ description_enumeration_type
 ENTITY document;
 - geändert
 - document_id wird attribut von String
-- attr. external document gelöscht
+- attr. relationship_to_external_document gelöscht
 - Kernklasse ohne die ein DMS keinen Sinn machen würde
 
 
@@ -59,6 +59,8 @@ ENTITY document_version
 - attr. external document gelöscht
 - einfügen von Attribut created_at (siehe digital_file)
 - sollte ein Attribut document_version_id haben (oder?), daher einfügen als String
+- has: SET [0:?] OF RASAD_status; gelöscht
+- available_as: SET [0:?] OF stored_document_representation; gelöscht
 - Versionierung soll einer der unterstützten Anwendungsfälle sein
 
 
@@ -90,14 +92,13 @@ ENTITY document_class
 - geändert
 "The Document_class is a collection of attributes allowing to assign multiple classifications to a document."
 - OPTIONAL weg
-- description weg
-- Begr. description weg: ???
+- ändere classification_system in String (siehe ENTITY classification_system;)
 - Klassifikation ist einer der soll-Anwendungsfälle des DMS-Prototypen
 
 
 ENTITY classification_system;
-- geändert
-- OPTIONAL weg
+- gelöscht
+- mit OPTIONAL weg bleibt eine Klasse mit nur einem Attribut-->besseres design durch Attribut in aufrufender Klasse
 - Klassifikation ist einer der soll-Anwendungsfälle des DMS-Prototypen
 
 
@@ -148,6 +149,8 @@ ENTITY description;
 ENTITY document_version_external_object_reference_relationship;
 - geändert
 - OPTIONAL weg
+- offensichtlicher Fehler 2 Attribute heißen gleich
+- relating: external_object_reference_select; gelöscht
 - Dokumente(Versionen) sollen auf Realweltobjekte verweisen können, dazu wird eine Beziehung benötigt
 
 
@@ -207,12 +210,8 @@ ENTITY stored_document_representation;
 
 
 ENTITY digital_file
-- geändert
-- OPTIONAL weg
-- stored_at weg
-- sobald neue document_version folgt Speicherung, daher sollte dies bereits von document_version übernommen werden
-- einfügen von Attribut: Speicherort String
-- speichern von Dateien soll möglich sein, diese müssen representiert werden
+- gelöscht
+- da nur in Dateisystem des Servers gespeichert wird, reicht eine Variable in document_version
 
 ENTITY compound_document_file
 - gelöscht
