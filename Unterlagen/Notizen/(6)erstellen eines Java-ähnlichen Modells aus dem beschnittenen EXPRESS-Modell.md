@@ -14,6 +14,7 @@ sonderlich auf Qualität geachtet wurde.
 
 Das Dokument (5) ist ab tagging jenes Dokumentes nicht mehr zu ändern.
 Dieses Dokument diehnt ab dann als Arbeitsgrundlage für sämtliche weiteren Änderungen.
+Schlechte Idee, wegen Fehlerkorrektur und evtl. entstehenden Verbesserungen.
 
 #Mapping der EXPRESS-Ausdrücke
 
