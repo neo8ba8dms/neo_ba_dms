@@ -31,9 +31,8 @@ public class DocumentController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public String delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id){
         documentRepository.delete(id);
-        return "deleted";
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes = "application/json")

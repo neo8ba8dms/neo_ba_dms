@@ -1,7 +1,7 @@
 angular.module('dmsApp').controller('documentController', function($scope, $state, documentService) {
 
     $scope.documents = [];
-    $scope.document = new Document();
+    $scope.document = {};
 
     $scope.loadDocuments = function(){
         documentService.query(function(docs){
@@ -15,10 +15,36 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
         documentService.save($scope.document, function(){
             $('#createDocumentModal').modal('hide');
             $scope.loadDocuments();
+            $scope.document = {};
+        });
+    };
+    $scope.delete = function(id){
+        documentService.delete({id: id}, function(){
+            $scope.loadDocuments();
         });
     };
 
 
     //initial
     $scope.loadDocuments();
+});
+
+/*********************************************************************************************************/
+
+angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService) {
+
+   $scope.document = {};
+
+    $scope.loadDocument = function(id){
+        documentService.get({id: id}, function(doc){
+            $scope.document = doc;
+        });
+    };
+
+    $scope.update = function(){
+      documentService.update($scope.document);
+    };
+
+    //initial
+    $scope.loadDocument($stateParams.id);
 });
