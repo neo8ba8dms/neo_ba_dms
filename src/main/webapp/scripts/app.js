@@ -21,9 +21,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/documents/{id}',
             templateUrl: 'html/documentDetail.html',
             controller: 'documentDetailController'
+        })
+        .state('externalObjects', {
+            url: '/eor',
+            templateUrl: 'html/externalObjects.html',
+            controller: 'externalObjectsController'
+        })
+        .state('externalObjectDetails', {
+            url: '/eor/{id}',
+            templateUrl: 'html/externalObjectDetails.html',
+            controller: 'externalObjectDetailsController'
         });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('home');
 });
 
 
