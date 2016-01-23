@@ -31,9 +31,10 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
 
 /*********************************************************************************************************/
 
-angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService) {
+angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService, eorService) {
 
-   $scope.document = {};
+    $scope.document = {};
+    $scope.externalObjects = {};
 
     $scope.loadDocument = function(id){
         documentService.get({id: id}, function(doc){
@@ -45,6 +46,15 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
       documentService.update($scope.document);
     };
 
+    $scope.loadExternalObjects = function(){
+        eorService.query(function(eors){
+            $scope.externalObjects = eors;
+            console.log("Did (re-)load all external objects");
+            console.log($scope.externalObjects);
+        });
+    };
+
     //initial
     $scope.loadDocument($stateParams.id);
+    $scope.loadExternalObjects();
 });

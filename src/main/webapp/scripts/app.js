@@ -1,4 +1,4 @@
-var app = angular.module('dmsApp', ['ui.router','ngResource']);
+var app = angular.module('dmsApp', ['ui.router','ngResource', 'checklist-model']);
 
 
 app.config(function($stateProvider, $urlRouterProvider) {

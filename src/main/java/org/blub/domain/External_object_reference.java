@@ -6,11 +6,9 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
-@JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
 public class External_object_reference {
 
-    @JsonProperty("id")
     @GraphId Long id;
 
     //// TODO: 19.01.16 Datenmodel und Implementierung zusammenführen
