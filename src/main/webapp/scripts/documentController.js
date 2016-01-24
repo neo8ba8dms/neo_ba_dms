@@ -31,7 +31,7 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
 
 /*********************************************************************************************************/
 
-angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService, eorService) {
+angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService, eorService, fileUploadService) {
 
     $scope.document = {};
     $scope.externalObjects = {};
@@ -53,6 +53,11 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
             console.log($scope.externalObjects);
         });
     };
+
+    $scope.uploadFile = function(){
+        var uploadUrl = "/documentUpload";
+        fileUploadService.uploadFileToUrl(uploadUrl, $scope.document);
+    }
 
     //initial
     $scope.loadDocument($stateParams.id);
