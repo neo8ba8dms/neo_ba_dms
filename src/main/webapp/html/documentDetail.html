@@ -4,7 +4,7 @@
     </h2>
     <form name="documentDetailForm" role="form" novalidate>
         <button ui-sref="documents" class="btn btn-default">zurück</button>
-        <button type="submit" class="btn btn-default" ng-click="update()">update</button>
+        <button class="btn btn-default" ng-click="updateDocument()">update</button>
 
         <hr size="10">
         <label>Name: </label>
@@ -22,10 +22,6 @@
         </div>
         <div>
             <input type="file" file-model="document.file"/>
-            <button ng-click="uploadFile()">upload me</button>
-            <button ng-click="updateDocument()">test post request</button>
         </div>
-
-
     </form>
 </div>

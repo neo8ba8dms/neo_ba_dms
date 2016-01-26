@@ -31,7 +31,7 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
 
 /*********************************************************************************************************/
 
-angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService, eorService, fileUploadService, documentUpdateService) {
+angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, documentService, eorService, documentUpdateService) {
 
     $scope.document = {};
     $scope.externalObjects = {};
@@ -42,10 +42,6 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
         });
     };
 
-    $scope.update = function(){
-      documentService.update($scope.document);
-    };
-
     $scope.loadExternalObjects = function(){
         eorService.query(function(eors){
             $scope.externalObjects = eors;
@@ -54,13 +50,8 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
         });
     };
 
-    $scope.uploadFile = function(){
-        var uploadUrl = "/documentUpload";
-        fileUploadService.uploadFileToUrl(uploadUrl, $scope.document);
-    };
-
     $scope.updateDocument = function(){
-        var uploadUrl = "/documentUpload";
+        var uploadUrl = "/api/documents/" + $stateParams.id;
         documentUpdateService.updateDocument(uploadUrl, $scope.document);
     };
 
