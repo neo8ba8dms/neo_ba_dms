@@ -48,6 +48,11 @@ public class DocumentController {
     }
 */
 
+    /*
+    When updating a document without adding a file, then the path to the file
+    shall remain and nothing in the repository changes.
+    When updating a document and adding a file, then there shall be a new path and a changed repository.
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public @ResponseBody Document update(@RequestParam("documentString") String documentString,
                                                  @RequestParam(value= "file", required=false) MultipartFile file
@@ -55,25 +60,27 @@ public class DocumentController {
 
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Document recievedDocument = deserializeDocumentString(documentString);
+        Document oldDocument = documentRepository.findOne(recievedDocument.getId());
+        Document newDocument = new Document();
         String filename = "";
         String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getName() +
                 timestamp;
 
+        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
+        String pathToFileForNewDocument;
+
         if (file != null && !file.isEmpty()) {
             filename = file.getOriginalFilename();
+            pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
+        }else{
+            pathToFileForNewDocument = oldDocument.getPathToFile();
         }
-        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
-        String pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
-
-        //old document
-        Document oldDocument = documentRepository.findOne(recievedDocument.getId());
 
         //new document
-        Document newDocument = new Document();
         newDocument.setName(recievedDocument.getName());
         newDocument.setExternalObjects(recievedDocument.getExternalObjects());
-        newDocument.setPathToFile(pathToFileForNewDocument);
         newDocument.setWasVersionedAt(timestamp);
+        newDocument.setPathToFile(pathToFileForNewDocument);
         documentRepository.save(newDocument); //newDocument.id is generated here
 
         //reference from (old) --> (new)
