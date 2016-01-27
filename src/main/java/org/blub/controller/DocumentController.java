@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @RestController
 @RequestMapping(value = "/api/documents")
@@ -50,16 +50,16 @@ public class DocumentController {
     }
 */
 
-    //// TODO: 25.01.16 Response header bearbeiten, um Fehlermeldung bei Response zu verhindern(oder, was ihn verursacht)
-
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public @ResponseBody Document update(@RequestParam("documentString") String documentString,
                                                  @RequestParam(value= "file", required=false) MultipartFile file
     ){
+
+        Timestamp timestamp = new Timestamp(new Date().getTime());
         Document recievedDocument = deserializeDocumentString(documentString);
         String filename = "";
         String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getName() +
-                new java.sql.Timestamp(Calendar.getInstance().getTimeInMillis());
+                timestamp;
 
         if (file != null && !file.isEmpty()) {
             filename = file.getOriginalFilename();
@@ -75,6 +75,7 @@ public class DocumentController {
         newDocument.setName(recievedDocument.getName());
         newDocument.setExternalObjects(recievedDocument.getExternalObjects());
         newDocument.setPathToFile(pathToFileForNewDocument);
+        newDocument.setWasVersionedAt(timestamp);
         documentRepository.save(newDocument); //newDocument.id is generated here
 
         //reference from (old) --> (new)

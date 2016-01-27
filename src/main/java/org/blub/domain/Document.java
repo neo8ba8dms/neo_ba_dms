@@ -4,6 +4,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 @NodeEntity
@@ -20,6 +21,8 @@ public class Document {
     private Document successorDocument;
 
     private String pathToFile;
+
+    private Timestamp wasVersionedAt;
 
     public Long getId() {
         return id;
@@ -59,5 +62,13 @@ public class Document {
 
     public void setSuccessorDocument(Document successorDocument) {
         this.successorDocument = successorDocument;
+    }
+
+    public Timestamp getWasVersionedAt() {
+        return wasVersionedAt;
+    }
+
+    public void setWasVersionedAt(Timestamp wasVersionedAt) {
+        this.wasVersionedAt = wasVersionedAt;
     }
 }
