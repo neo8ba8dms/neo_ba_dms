@@ -1,10 +1,7 @@
 package org.blub.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.Set;
@@ -18,6 +15,11 @@ public class Document {
 
     @Relationship(type="referesTo")
     private Set<External_object_reference> externalObjects;
+
+    @Relationship(type = "referenceToNewVersion")
+    private Document successorDocument;
+
+    private String pathToFile;
 
     public Long getId() {
         return id;
@@ -41,5 +43,21 @@ public class Document {
 
     public void setExternalObjects(Set<External_object_reference> externalObjects) {
         this.externalObjects = externalObjects;
+    }
+
+    public String getPathToFile() {
+        return pathToFile;
+    }
+
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
+
+    public Document getSuccessorDocument() {
+        return successorDocument;
+    }
+
+    public void setSuccessorDocument(Document successorDocument) {
+        this.successorDocument = successorDocument;
     }
 }

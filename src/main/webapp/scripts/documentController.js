@@ -52,7 +52,9 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
 
     $scope.updateDocument = function(){
         var uploadUrl = "/api/documents/" + $stateParams.id;
-        documentUpdateService.updateDocument(uploadUrl, $scope.document);
+        documentUpdateService.updateDocument(uploadUrl, $scope.document).then(function(response){
+            $scope.document = response.data;
+        });
     };
 
     //initial

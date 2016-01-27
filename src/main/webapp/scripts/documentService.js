@@ -39,11 +39,12 @@ angular.module('dmsApp').factory('documentService', function($resource){
 
 
 
-        $http.post(uploadUrl, fd, {
+        return $http.post(uploadUrl, fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             })
-            .success(function(){
+            .success(function(response){
+                return response;
             })
             .error(function(){
             });

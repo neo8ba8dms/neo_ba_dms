@@ -12,6 +12,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 
 @RestController
 @RequestMapping(value = "/api/documents")
@@ -52,28 +53,48 @@ public class DocumentController {
     //// TODO: 25.01.16 Response header bearbeiten, um Fehlermeldung bei Response zu verhindern(oder, was ihn verursacht)
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public @ResponseBody String update(@RequestParam("documentString") String documentString,
+    public @ResponseBody Document update(@RequestParam("documentString") String documentString,
                                                  @RequestParam(value= "file", required=false) MultipartFile file
     ){
-        Document document = deserializeDocumentString(documentString);
-        documentRepository.save(document);
+        Document recievedDocument = deserializeDocumentString(documentString);
+        String filename = "";
+        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getName() +
+                new java.sql.Timestamp(Calendar.getInstance().getTimeInMillis());
+
+        if (file != null && !file.isEmpty()) {
+            filename = file.getOriginalFilename();
+        }
+        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
+        String pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
+
+        //old document
+        Document oldDocument = documentRepository.findOne(recievedDocument.getId());
+
+        //new document
+        Document newDocument = new Document();
+        newDocument.setName(recievedDocument.getName());
+        newDocument.setExternalObjects(recievedDocument.getExternalObjects());
+        newDocument.setPathToFile(pathToFileForNewDocument);
+        documentRepository.save(newDocument); //newDocument.id is generated here
+
+        //reference from (old) --> (new)
+        oldDocument.setSuccessorDocument(newDocument);
+        documentRepository.save(oldDocument);
 
         if (file != null && !file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
-                File directory = new File("documentrepository/" + document.getName());
+                File directory = new File(directoryWhereFileGetsSaved);
                 directory.mkdirs();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(directory, file.getOriginalFilename())));
+                        new BufferedOutputStream(new FileOutputStream(new File(directory, filename)));
                 stream.write(bytes);
                 stream.close();
-                return "You successfully uploaded " + file.getOriginalFilename() + "!";
             } catch (Exception e) {
-                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
+                e.printStackTrace();
             }
-        } else {
-            return "No file uploaded.";
         }
+        return newDocument;
     }
 
 
