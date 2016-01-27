@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -114,5 +112,32 @@ public class DocumentController {
         }
         return document;
 
+    }
+
+    @RequestMapping(value = "/download/{documentrepository}/{documentname}/{filename}.{fileending}", method = RequestMethod.GET)
+    public void downloadFile(HttpServletResponse response,
+                             @PathVariable("documentrepository") String documentrepository,
+                             @PathVariable("documentname") String documentname,
+                             @PathVariable("filename") String filename,
+                             @PathVariable("fileending") String fileending){
+
+        try {
+            File file = new File(documentrepository + "/" + documentname + "/" + filename + "." + fileending);
+            InputStream inputStream = new FileInputStream(file);
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment; filename=\""
+                    + file.getName() + "\"");
+            OutputStream outputStream = response.getOutputStream();
+            byte[] buffer = new byte[2048];
+            int length;
+            while((length = inputStream.read(buffer)) != -1){
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

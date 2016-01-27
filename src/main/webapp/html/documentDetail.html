@@ -23,5 +23,8 @@
         <div>
             <input type="file" file-model="document.file"/>
         </div>
+        <div>
+            <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
+        </div>
     </form>
 </div>
