@@ -10,7 +10,7 @@
         <label>Name: </label>
         <input type="text" ng-model="document.name">
 
-        <div>
+        <div style="background-color: lightgrey">
             <label>externe Objekte: </label></br>
             <div class="row" ng-repeat="eor in externalObjects">
                 <label >
@@ -21,13 +21,13 @@
 
         </div>
         <div>
-            letzte Aktualisierung: {{document.wasVersionedAt | date:'yyyy-MM-dd HH:mm:ss'}}
+            Speicherzeitpunkt: {{document.wasVersionedAt | date:'yyyy-MM-dd HH:mm:ss'}}
+        </div>
+        <div style="background-color: lightgrey">
+            Datei hochladen: <input type="file" file-model="document.file"/>
         </div>
         <div>
-            <input type="file" file-model="document.file"/>
-        </div>
-        <div>
-            <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
+            aktuellste Datei: <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
         </div>
     </form>
 </div>
