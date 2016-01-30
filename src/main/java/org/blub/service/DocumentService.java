@@ -1,5 +1,7 @@
 package org.blub.service;
 
+import org.blub.domain.Document;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -29,10 +31,6 @@ public class DocumentService {
         }
     }
 
-    public void updateMetaData(){
-
-    }
-
     public void downloadDocument(HttpServletResponse response, String documentrepository, String documentname, String filename, String fileending){
 
         try {
@@ -53,5 +51,26 @@ public class DocumentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateMetaData(){
+
+    }
+
+    /*
+    This method is necessary, because the automatic mapping does not work.
+    I spend several hours on that and could just come up with this workaround.
+    Feel free to fix this.
+     */
+    public Document deserializeDocumentString(String documentString){
+        ObjectMapper mapper = new ObjectMapper();
+        Document document = new Document();
+        try {
+            document = mapper.readValue(documentString, Document.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return document;
+
     }
 }

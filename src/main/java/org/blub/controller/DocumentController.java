@@ -58,11 +58,10 @@ public class DocumentController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public @ResponseBody Document update(@RequestParam("documentString") String documentString,
-                                                 @RequestParam(value= "file", required=false) MultipartFile file
-    ){
+                                                 @RequestParam(value= "file", required=false) MultipartFile file){
 
+        Document recievedDocument = documentService.deserializeDocumentString(documentString);
         Timestamp timestamp = new Timestamp(new Date().getTime());
-        Document recievedDocument = deserializeDocumentString(documentString);
         Document oldDocument = documentRepository.findOne(recievedDocument.getId());
         Document newDocument = new Document();
         String filename = "";
@@ -95,23 +94,6 @@ public class DocumentController {
         return newDocument;
     }
 
-
-    /*
-    This method is necessary, because the automatic mapping does not work.
-    I spend several hours on that and could just come up with this workaround.
-    Feel free to fix this.
-     */
-    private Document deserializeDocumentString(String documentString){
-        ObjectMapper mapper = new ObjectMapper();
-        Document document = new Document();
-        try {
-            document = mapper.readValue(documentString, Document.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return document;
-
-    }
 
     @RequestMapping(value = "/download/{documentrepository}/{documentname}/{filename}.{fileending}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response,
