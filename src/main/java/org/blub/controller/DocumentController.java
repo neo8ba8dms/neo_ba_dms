@@ -56,6 +56,7 @@ public class DocumentController {
     shall remain and nothing in the repository changes.
     When updating a document and adding a file, then there shall be a new path and a changed repository.
      */
+    //// TODO: 30.01.16 move code into service(not that easy)
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public @ResponseBody Document update(@RequestParam("documentString") String documentString,
                                                  @RequestParam(value= "file", required=false) MultipartFile file){
