@@ -21,7 +21,7 @@
 
         </div>
         <div>
-            Speicherzeitpunkt: {{document.wasVersionedAt | date:'yyyy-MM-dd HH:mm:ss'}}
+            Speicherzeitpunkt: {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}
         </div>
         <div style="background-color: lightgrey">
             Datei hochladen: <input type="file" file-model="document.file"/>
