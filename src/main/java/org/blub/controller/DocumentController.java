@@ -2,6 +2,7 @@ package org.blub.controller;
 
 import org.blub.domain.Document;
 import org.blub.repository.DocumentRepository;
+import org.blub.service.DocumentService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class DocumentController {
 
     @Autowired
     private DocumentRepository documentRepository;
+    @Autowired
+    private DocumentService documentService;
 
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Document> list() {
@@ -87,19 +90,8 @@ public class DocumentController {
         oldDocument.setSuccessorDocument(newDocument);
         documentRepository.save(oldDocument);
 
-        if (file != null && !file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                File directory = new File(directoryWhereFileGetsSaved);
-                directory.mkdirs();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(directory, filename)));
-                stream.write(bytes);
-                stream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        documentService.uploadDocument(file, filename, directoryWhereFileGetsSaved);
+
         return newDocument;
     }
 
