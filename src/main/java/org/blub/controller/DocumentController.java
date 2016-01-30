@@ -3,7 +3,6 @@ package org.blub.controller;
 import org.blub.domain.Document;
 import org.blub.repository.DocumentRepository;
 import org.blub.service.DocumentService;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,13 +21,18 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
+    //shall only return the most recent document of each versioning tree
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Document> list() {
-        return documentRepository.findAll();
+    public Iterable<Document> listMostRecentDocumentsOfEachVersioningPath() {
+
+        //return documentRepository.findAll();
+        return documentRepository.allNewestDocumentVersions();
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public Document create(@RequestBody Document document){
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        document.setWasVersionedAt(timestamp);
         documentRepository.save(document);
         return documentRepository.findOne(document.getId());
     }
