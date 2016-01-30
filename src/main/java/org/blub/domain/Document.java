@@ -4,7 +4,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @NodeEntity
@@ -22,7 +22,7 @@ public class Document {
 
     private String pathToFile;
 
-    private Timestamp wasVersionedAt;
+    private Date wasVersionedAt;
 
     public Long getId() {
         return id;
@@ -64,11 +64,11 @@ public class Document {
         this.successorDocument = successorDocument;
     }
 
-    public Timestamp getWasVersionedAt() {
+    public Date getWasVersionedAt() {
         return wasVersionedAt;
     }
 
-    public void setWasVersionedAt(Timestamp wasVersionedAt) {
+    public void setWasVersionedAt(Date wasVersionedAt) {
         this.wasVersionedAt = wasVersionedAt;
     }
 }
