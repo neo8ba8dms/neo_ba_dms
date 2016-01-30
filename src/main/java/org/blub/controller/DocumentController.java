@@ -21,11 +21,10 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    //shall only return the most recent document of each versioning tree
+    //shall only return the most recent document of each versioning path
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Document> listMostRecentDocumentsOfEachVersioningPath() {
 
-        //return documentRepository.findAll();
         return documentRepository.allNewestDocumentVersions();
     }
 
@@ -46,14 +45,6 @@ public class DocumentController {
     public void delete(@PathVariable Long id){
         documentRepository.delete(id);
     }
-
-/*delete, when versioning is done
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes = "application/json")
-    public Document update(@PathVariable Long id, @RequestBody Document document){
-        documentRepository.save(document);
-        return documentRepository.findOne(id);
-    }
-*/
 
     /*
     When updating a document without adding a file, then the path to the file
