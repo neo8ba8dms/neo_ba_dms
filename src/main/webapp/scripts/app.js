@@ -12,15 +12,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('documents', {
             url: '/documents',
             templateUrl: 'html/documents.html',
-            controller: 'documentController',
-            onEnter: function(){
-                console.log('did enter documents');
-            }
+            controller: 'documentOverviewController',
         })
-        .state('documentDetails', {
+        .state('documentDetailsUpdate', {
             url: '/documents/{id}',
             templateUrl: 'html/documentDetail.html',
-            controller: 'documentDetailController'
+            controller: 'documentDetailsUpdateController'
+        })
+        .state('documentDetailsCreate', {
+            url: 'documents',
+            templateUrl: 'html/documentDetail.html',
+            controller: 'documentDetailsCreateController'
         })
         .state('externalObjects', {
             url: '/eor',

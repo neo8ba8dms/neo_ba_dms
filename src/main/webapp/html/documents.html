@@ -1,28 +1,10 @@
 <div>
     <h1>Hier kommen die Dokumente rein(es ist jeweils die Referenz auf die aktuellste Version zu sehen).</h1>
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createDocumentModal">
-        Neues Dokument anlegen
-    </button>
-    <div class="modal fade" id="createDocumentModal" role="dialog" aria-labelledby="documentLabel" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="documentForm" novalidate ng-submit="createNewDocument()">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Name des Dokumentes</label>
-                            <input type="text" ng-model="document.name">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
-                        <button type="submit" class="btn btn-default">save</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
+    <div>
+        Beachte, dass sich löschen immer nur auf die aktuellste Version bezieht(nicht die komplette Versionsgeschichte).
     </div>
+    <br>
+    <button type="button" class="btn btn-default" ui-sref="documentDetailsCreate">neues Dokument anlegen</button>
     <div>
         <table class="table table-striped">
             <thead>
@@ -35,10 +17,10 @@
             <tbody>
                 <tr ng-repeat="doc in documents">
                     <td>
-                        <a ui-sref="documentDetails({id:doc.id})">{{doc.id}}</a>
+                        <a ui-sref="documentDetailsUpdate({id:doc.id})">{{doc.id}}</a>
                     </td>
                     <td>
-                        <a ui-sref="documentDetails({id:doc.id})">{{doc.name}}</a>
+                        <a ui-sref="documentDetailsUpdate({id:doc.id})">{{doc.name}}</a>
                     </td>
                     <td>
                         {{doc.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}

@@ -1,4 +1,4 @@
-angular.module('dmsApp').controller('documentController', function($scope, $state, documentService) {
+angular.module('dmsApp').controller('documentOverviewController', function($scope, $state, documentService) {
 
     $scope.documents = [];
     $scope.document = {};
@@ -11,13 +11,6 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
         });
     };
 
-    $scope.createNewDocument = function(){
-        documentService.save($scope.document, function(){
-            $('#createDocumentModal').modal('hide');
-            $scope.loadDocuments();
-            $scope.document = {};
-        });
-    };
     $scope.delete = function(id){
         documentService.delete({id: id}, function(){
             $scope.loadDocuments();
@@ -31,10 +24,11 @@ angular.module('dmsApp').controller('documentController', function($scope, $stat
 
 /*********************************************************************************************************/
 
-angular.module('dmsApp').controller('documentDetailController', function($scope, $stateParams, $location, documentService, eorService, documentUpdateService) {
+angular.module('dmsApp').controller('documentDetailsUpdateController', function($scope, $stateParams, $location, documentService, eorService, documentUpdateService) {
 
     $scope.document = {};
     $scope.externalObjects = {};
+    $scope.isUpdateMode = true;
 
     $scope.loadDocument = function(id){
         documentService.get({id: id}, function(doc){
@@ -63,3 +57,28 @@ angular.module('dmsApp').controller('documentDetailController', function($scope,
     $scope.loadDocument($stateParams.id);
     $scope.loadExternalObjects();
 });
+
+angular.module('dmsApp').controller('documentDetailsCreateController', function($scope, documentService, eorService) {
+
+    $scope.document = {};
+    $scope.lastCreatedDocument = {};
+    $scope.externalObjects;
+    $scope.isCreateMode = true;
+    $scope.showNewDocument = false;
+
+    $scope.createNewDocument = function(){
+        documentService.save($scope.document, function(response){
+            $scope.showNewDocument = true;
+            $scope.document = {};
+            $scope.lastCreatedDocument = response;
+        });
+    };
+
+    //initial
+    eorService.query(function(eors){
+        $scope.externalObjects = eors;
+    });
+    console.log($scope.externalObjects);
+
+});
+

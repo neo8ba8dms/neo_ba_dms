@@ -1,11 +1,16 @@
 <div>
-    <h2>
-        Details für Dokument: {{document.name}} mit Id = {{document.id}}
-    </h2>
-    <form name="documentDetailForm" role="form" novalidate>
-        <button ui-sref="documents" class="btn btn-default">zurück</button>
-        <button class="btn btn-default" ng-click="updateDocument()">update</button>
+    <!--here is the main-state-dependend showing/hiding configured-->
+    <h2 ng-show="isCreateMode">Neues Dokument anlegen(nur Metadaten).</h2>
+    <button ng-show="isCreateMode" ui-sref="documents" class="btn btn-default">zurück</button>
+    <button ng-show="isCreateMode" class="btn btn-default" ng-click="createNewDocument()">neues Dokument anlegen</button>
 
+    <h2 ng-show="isUpdateMode">Details für Dokument: {{document.name}} mit Id = {{document.id}}</h2>
+    <button ng-show="isUpdateMode" ui-sref="documents" class="btn btn-default">zurück</button>
+    <button ng-show="isUpdateMode" class="btn btn-default" ng-click="updateDocument()">update</button>
+    <!--end main-state-dependend config-->
+    <!--some more config needed below-->
+
+    <form name="documentDetailForm" role="form" novalidate>
         <hr size="10">
         <label>Name: </label>
         <input type="text" ng-model="document.name">
@@ -18,16 +23,15 @@
                     {{eor.description}}
                 </label>
             </div>
-
         </div>
-        <div>
-            Speicherzeitpunkt: {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}
-        </div>
-        <div style="background-color: lightgrey">
+        <div ng-hide="isCreateMode">Speicherzeitpunkt: {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
+        <div ng-hide="isCreateMode" style="background-color: lightgrey">
             Datei hochladen: <input type="file" file-model="document.file"/>
         </div>
-        <div>
+        <div ng-hide="isCreateMode">
             aktuellste Datei: <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
         </div>
     </form>
+
+    <div ng-show="showNewDocument">neues Dokument angelegt: {{lastCreatedDocument}}</div>
 </div>
