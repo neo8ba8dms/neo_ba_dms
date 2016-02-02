@@ -21,3 +21,4 @@
 - extend data-model( e.g. persons, adresses,...)
 - catch all possible error-states(e.g. deleting external objects)
 - make use of ui-router's nested state capability for documentDetail or ...
+- does yet more loading from backend than actually necessary, so reduce it
