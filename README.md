@@ -9,5 +9,15 @@
 - start application with: "mvn spring-boot:run"
 - view application on "http://localhost:8080"
 
-####has still errors:
+####has still bugs:
 - clicking very fast on the buttons can get the app into an error-state which requires restart
+- deleting can get the app into an inconsistent state, because there is very little error-handling
+
+####there are a lot of possible things to do:
+- externalize Strings
+- refactor for cleaner architecture
+- make frontend more appealing
+- create automatic tests
+- extend data-model( e.g. persons, adresses,...)
+- catch all possible error-states(e.g. deleting external objects)
+- make use of ui-router's nested state capability for documentDetail or ...
