@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/eor")
 public class External_object_reference_controller {
 
+    
+    //// TODO: 31.01.16 deleting External_object_references can lead to an inconsistent state(for this prototype a benevolent user is assumed)
     @Autowired
     private External_object_reference_repository eorRepository;
 

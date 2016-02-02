@@ -1,0 +1,28 @@
+<div>
+    <h1>Versionsgeschichte(geordnet von oben(neuste) nach unten(älteste)</h1>
+    <button type="button" class="btn btn-default" ui-sref="documents">zurück</button>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dokumentenname</th>
+                <th>Speicherzeitpunkt</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="doc in versionSet | orderBy:'-wasVersionedAt'">
+                <td>
+                    <a ui-sref="versionDetail({id:doc.id})">{{doc.id}}</a>
+                </td>
+                <td>
+                    <a ui-sref="versionDetail({id:doc.id})">{{doc.name}}</a>
+                </td>
+                <td>
+                    {{doc.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

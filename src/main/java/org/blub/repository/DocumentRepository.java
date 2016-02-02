@@ -18,4 +18,14 @@ public interface DocumentRepository extends GraphRepository<Document>{
      */
     @Query(" match (n:Document) where not((n)-[:referenceToNewVersion]->(:Document)) return n")
     Iterable<Document> allNewestDocumentVersions();
+
+
+    /*
+    This returns the set of versions to a given id(of one newest version). It is unordered.
+    The ordering only takes place with an angular-filter in the html.
+    This was surprisingly difficult(2 hours) an looks pretty nasty, so feel free to make it better.
+     */
+    @Query("match (n:Document)-[:referenceToNewVersion*0..]->(m:Document) where id(m)={0}  " +
+            "with collect(n) + collect(m) as result unwind result as result2 return result2")
+    Iterable<Document> versionHistoryForADocument(Long id);
 }

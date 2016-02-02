@@ -41,6 +41,7 @@ public class DocumentController {
         return documentRepository.findOne(id);
     }
 
+    //// TODO: 31.01.16 doesn't return anything, which makes the frontend return error(error has no consequences) 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void delete(@PathVariable Long id){
         documentRepository.delete(id);

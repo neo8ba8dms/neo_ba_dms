@@ -33,6 +33,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/eor/{id}',
             templateUrl: 'html/externalObjectDetails.html',
             controller: 'externalObjectDetailsController'
+        })
+        .state('versionHistory', {
+            url: '/versionHistory/{idOfNewestDocument}',
+            templateUrl: 'html/versionHistory.html',
+            controller: 'versionHistoryController'
+
         });
 
     $urlRouterProvider.otherwise('home');
