@@ -13,10 +13,10 @@
             <tbody>
             <tr ng-repeat="doc in versionSet | orderBy:'-wasVersionedAt'">
                 <td>
-                    <a ui-sref="versionDetail({id:doc.id})">{{doc.id}}</a>
+                    <a ui-sref="versionHistoryDetails({documentVersionId:doc.id})">{{doc.id}}</a>
                 </td>
                 <td>
-                    <a ui-sref="versionDetail({id:doc.id})">{{doc.name}}</a>
+                    <a ui-sref="versionHistoryDetails({documentVersionId:doc.id})">{{doc.name}}</a>
                 </td>
                 <td>
                     {{doc.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}

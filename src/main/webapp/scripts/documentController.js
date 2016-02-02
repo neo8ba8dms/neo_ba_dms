@@ -36,14 +36,6 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
         });
     };
 
-    $scope.loadExternalObjects = function(){
-        eorService.query(function(eors){
-            $scope.externalObjects = eors;
-            console.log("Did (re-)load all external objects");
-            console.log($scope.externalObjects);
-        });
-    };
-
     $scope.updateDocument = function(){
         var uploadUrl = "/api/documents/" + $stateParams.id;
         documentUpdateService.updateDocument(uploadUrl, $scope.document).then(function(response){
@@ -55,7 +47,9 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
 
     //initial
     $scope.loadDocument($stateParams.id);
-    $scope.loadExternalObjects();
+    eorService.query(function(eors){
+        $scope.externalObjects = eors;
+    });
 });
 
 angular.module('dmsApp').controller('documentDetailsCreateController', function($scope, documentService, eorService) {
@@ -78,7 +72,5 @@ angular.module('dmsApp').controller('documentDetailsCreateController', function(
     eorService.query(function(eors){
         $scope.externalObjects = eors;
     });
-    console.log($scope.externalObjects);
-
 });
 

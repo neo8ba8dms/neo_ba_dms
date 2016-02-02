@@ -7,6 +7,9 @@
     <h2 ng-show="isUpdateMode">Details für Dokument: {{document.name}} mit Id = {{document.id}}</h2>
     <button ng-show="isUpdateMode" ui-sref="documents" class="btn btn-default">zurück</button>
     <button ng-show="isUpdateMode" class="btn btn-default" ng-click="updateDocument()">update</button>
+
+    <h2 ng-show="isVersionHistoryMode">Dokumentenversion(nur ansehbar) für: {{document.name}} mit Id = {{document.id}} </h2>
+    <button ng-show="isVersionHistoryMode" ui-sref="documents" class="btn btn-default">zurück zur Dokumentenliste</button>
     <!--end main-state-dependend config-->
     <!--some more config needed below-->
 
@@ -25,7 +28,7 @@
             </div>
         </div>
         <div ng-hide="isCreateMode">Speicherzeitpunkt: {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
-        <div ng-hide="isCreateMode" style="background-color: lightgrey">
+        <div ng-hide="isCreateMode || isVersionHistoryMode" style="background-color: lightgrey">
             Datei hochladen: <input type="file" file-model="document.file"/>
         </div>
         <div ng-hide="isCreateMode">

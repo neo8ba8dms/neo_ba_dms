@@ -39,6 +39,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'html/versionHistory.html',
             controller: 'versionHistoryController'
 
+        })
+        .state('versionHistoryDetails', {
+            url: '/versionHistoryDetails/{documentVersionId}',
+            templateUrl: 'html/documentDetail.html',
+            controller: 'versionHistoryDetailsController'
         });
 
     $urlRouterProvider.otherwise('home');

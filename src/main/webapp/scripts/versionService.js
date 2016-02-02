@@ -1,4 +1,9 @@
-angular.module('dmsApp').factory('versionService', function($resource){
+angular.module('dmsApp').factory('versionListService', function($resource){
 
-    return $resource('http://localhost:8080/api/version/:id', {id: '@id'});
+    return $resource('http://localhost:8080/api/versionHistory/:id', {id: '@id'});
+});
+
+angular.module('dmsApp').factory('versionDetailService', function($resource){
+
+    return $resource('http://localhost:8080/api/versionDetail/:id', {id: '@id'});
 });

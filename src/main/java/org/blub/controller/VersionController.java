@@ -10,15 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/version")
+@RequestMapping(value = "/api/")
 public class VersionController {
 
     @Autowired
     DocumentRepository documentRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{idOfNewestDocument}")
+    @RequestMapping(method = RequestMethod.GET, value = "versionHistory/{idOfNewestDocument}")
     public Iterable<Document> getVersionHistory(@PathVariable Long idOfNewestDocument){
 
         return documentRepository.versionHistoryForADocument(idOfNewestDocument);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "versionDetail/{documentVersionId}")
+    public Document getOneVersion(@PathVariable Long documentVersionId){
+        return documentRepository.findOne(documentVersionId);
     }
 }
