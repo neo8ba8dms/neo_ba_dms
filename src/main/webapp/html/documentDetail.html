@@ -27,13 +27,39 @@
                 </label>
             </div>
         </div>
-        <div ng-hide="isCreateMode">Speicherzeitpunkt: {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
+        <div ng-hide="isCreateMode">
+            <label>Speicherzeitpunkt:</label>
+            {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
         <div ng-hide="isCreateMode || isVersionHistoryMode" style="background-color: lightgrey">
-            Datei hochladen: <input type="file" file-model="document.file"/>
+            <label>Datei hochladen:</label>
+            <input type="file" file-model="document.file"/>
         </div>
         <div ng-hide="isCreateMode">
-            aktuellste Datei: <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
+            <label>aktuellste Datei:</label>
+            <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
         </div>
+        <br>
+        <br>
+        <div ng-hide="isCreateMode">
+            <label>Beziehungen dieses Dokumentes zu anderen Dokumenten:</label>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id der Beziehung</th>
+                    <th>Name der Beziehung</th>
+                    <th>referenziertes Dokument(Id || Name)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="rel in document.documentRelationships">
+                    <td>{{rel.id}}</td>
+                    <td>{{rel.name}}</td>
+                    <td>{{rel.endDocument.id}}  ||  {{rel.endDocument.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </form>
 
     <div ng-show="showNewDocument">neues Dokument angelegt: {{lastCreatedDocument}}</div>

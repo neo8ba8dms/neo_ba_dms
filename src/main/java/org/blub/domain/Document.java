@@ -18,7 +18,7 @@ public class Document {
     private Document successorDocument;
     private String pathToFile;
     private Date wasVersionedAt;
-    private DocumentRelationship documentRelationship;
+    private Set<DocumentRelationship> documentRelationships;
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -70,11 +70,11 @@ public class Document {
         this.wasVersionedAt = wasVersionedAt;
     }
 
-    public DocumentRelationship getDocumentRelationship() {
-        return documentRelationship;
+    public Set<DocumentRelationship> getDocumentRelationships() {
+        return documentRelationships;
     }
 
-    public void setDocumentRelationship(DocumentRelationship documentRelationship) {
-        this.documentRelationship = documentRelationship;
+    public void setDocumentRelationships(Set<DocumentRelationship> documentRelationships) {
+        this.documentRelationships = documentRelationships;
     }
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api/documents")
@@ -82,11 +84,14 @@ public class DocumentController {
         newDocument.setPathToFile(pathToFileForNewDocument);
 
         ////////////////////////////////////test DocumentRelationship//////////////////////
+        Set<DocumentRelationship> documentRelationships = new HashSet<DocumentRelationship>();
         DocumentRelationship documentRelationship = new DocumentRelationship();
         documentRelationship.setName("doc-rel-1");
         documentRelationship.setStartDocument(newDocument);
         documentRelationship.setEndDocument(documentRepository.findOne(19L));
-        newDocument.setDocumentRelationship(documentRelationship);
+
+        documentRelationships.add(documentRelationship);
+        newDocument.setDocumentRelationships(documentRelationships);
         //////////////////////////end test DocumentRelationship/////////////////////
 
 
