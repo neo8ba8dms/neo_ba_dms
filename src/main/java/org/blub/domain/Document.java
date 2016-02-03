@@ -11,18 +11,16 @@ import java.util.Set;
 public class Document {
 
     @GraphId Long id;
-
     private String name;
-
     @Relationship(type="referesTo")
     private Set<External_object_reference> externalObjects;
-
     @Relationship(type = "referenceToNewVersion")
     private Document successorDocument;
-
     private String pathToFile;
-
     private Date wasVersionedAt;
+    private DocumentRelationship documentRelationship;
+
+    ////////////////////////////////////////////////////////////////////////
 
     public Long getId() {
         return id;
@@ -70,5 +68,13 @@ public class Document {
 
     public void setWasVersionedAt(Date wasVersionedAt) {
         this.wasVersionedAt = wasVersionedAt;
+    }
+
+    public DocumentRelationship getDocumentRelationship() {
+        return documentRelationship;
+    }
+
+    public void setDocumentRelationship(DocumentRelationship documentRelationship) {
+        this.documentRelationship = documentRelationship;
     }
 }

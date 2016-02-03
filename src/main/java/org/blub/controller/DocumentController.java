@@ -1,6 +1,7 @@
 package org.blub.controller;
 
 import org.blub.domain.Document;
+import org.blub.domain.DocumentRelationship;
 import org.blub.repository.DocumentRepository;
 import org.blub.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    //shall only return the most recent document of each versioning path
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Document> listMostRecentDocumentsOfEachVersioningPath() {
 
@@ -80,7 +80,18 @@ public class DocumentController {
         newDocument.setExternalObjects(recievedDocument.getExternalObjects());
         newDocument.setWasVersionedAt(timestamp);
         newDocument.setPathToFile(pathToFileForNewDocument);
-        documentRepository.save(newDocument); //newDocument.id is generated here
+
+        ////////////////////////////////////test DocumentRelationship//////////////////////
+        DocumentRelationship documentRelationship = new DocumentRelationship();
+        documentRelationship.setName("doc-rel-1");
+        documentRelationship.setStartDocument(newDocument);
+        documentRelationship.setEndDocument(documentRepository.findOne(19L));
+        newDocument.setDocumentRelationship(documentRelationship);
+        //////////////////////////end test DocumentRelationship/////////////////////
+
+
+
+        documentRepository.save(newDocument); //newDocument.id & documentRelationship.id are generated here
 
         //reference from (old) --> (new)
         oldDocument.setSuccessorDocument(newDocument);
