@@ -38,7 +38,11 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
 
     $scope.updateDocument = function(){
         var uploadUrl = "/api/documents/" + $stateParams.id;
+
+        var tmpFile = $scope.document.file; //save to add after angular.copy //probably better solution possible
         var correctDocument = angular.copy($scope.document); //removes $$hashKey which messes up things
+        correctDocument.file = tmpFile;
+
         documentUpdateService.updateDocument(uploadUrl, correctDocument).then(function(response){
             $scope.document = response.data; //useless because following reload, but removing breaks something
             $location.path('documents/' + $scope.document.id);
