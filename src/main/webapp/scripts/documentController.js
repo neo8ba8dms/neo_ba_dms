@@ -6,8 +6,6 @@ angular.module('dmsApp').controller('documentOverviewController', function($scop
     $scope.loadDocuments = function(){
         documentService.query(function(docs){
             $scope.documents = docs;
-            console.log("Did (re-)load all documents");
-            console.log($scope.documents);
         });
     };
 
@@ -29,6 +27,8 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     $scope.document = {};
     $scope.externalObjects = {};
     $scope.isUpdateMode = true;
+    $scope.listOfRecentDocumentVersions = {};
+    $scope.tmpRelationship = {};
 
     $scope.loadDocument = function(id){
         documentService.get({id: id}, function(doc){
@@ -40,10 +40,28 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
         var uploadUrl = "/api/documents/" + $stateParams.id;
         var correctDocument = angular.copy($scope.document); //removes $$hashKey which messes up things
         documentUpdateService.updateDocument(uploadUrl, correctDocument).then(function(response){
-            $scope.document = response.data;
+            $scope.document = response.data; //useless because following reload, but removing breaks something
             $location.path('documents/' + $scope.document.id);
         });
 
+    };
+
+    //todo should be made generic
+    $scope.showModal = function(){
+        documentService.query(function(docs){
+            $scope.listOfRecentDocumentVersions = docs;
+        });
+    };
+
+    $scope.createNewRealationship = function(){
+        //add relationship to list
+        if(!$scope.document.documentRelationships){
+            $scope.document.documentRelationships = [];
+        }
+        $scope.document.documentRelationships.push($scope.tmpRelationship);
+        //reset the addable relationship
+        $scope.tmpRelationship = {};
+        $('#createNewRelationshipModal').modal('hide');
     };
 
     //initial

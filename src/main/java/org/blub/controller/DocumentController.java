@@ -5,6 +5,7 @@ import org.blub.domain.DocumentRelationship;
 import org.blub.repository.DocumentRepository;
 import org.blub.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Transactional //try to avoid evtl. errors, don't know if it works
 @RestController
 @RequestMapping(value = "/api/documents")
 public class DocumentController {
@@ -40,10 +42,13 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Document find(@PathVariable Long id){
-        return documentRepository.findOne(id);
+        Document doc = documentRepository.findOne(id); //does add the predecessor as successor sometimes
+        Document trueSuccessor = documentRepository.getSuccessorDocument(id);
+        doc.setSuccessorDocument(trueSuccessor);
+        return doc;
     }
 
-    //// TODO: 31.01.16 doesn't return anything, which makes the frontend return error(error has no consequences) 
+    //// TODO: 31.01.16 doesn't return anything, which makes the frontend return error(error has no consequences)
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void delete(@PathVariable Long id){
         documentRepository.delete(id);
@@ -53,12 +58,17 @@ public class DocumentController {
     When updating a document without adding a file, then the path to the file
     shall remain and nothing in the repository changes.
     When updating a document and adding a file, then there shall be a new path and a changed repository.
+    Remember with every update there are new relationships generated(with identical metadata except id),
+    even if nothing has changed in the frontend.
      */
     //// TODO: 30.01.16 move code into service(not that easy)
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public @ResponseBody Document update(@RequestParam("documentString") String documentString,
+    public Document update(@RequestParam("documentString") String documentString,
                                                  @RequestParam(value= "file", required=false) MultipartFile file){
 
+        /*
+        The recievedDocument has the new data except for the old id.
+         */
         Document recievedDocument = documentService.deserializeDocumentString(documentString);
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Document oldDocument = documentRepository.findOne(recievedDocument.getId());
@@ -83,16 +93,17 @@ public class DocumentController {
         newDocument.setWasVersionedAt(timestamp);
         newDocument.setPathToFile(pathToFileForNewDocument);
 
-        ////////////////////////////////////test DocumentRelationship//////////////////////
-        Set<DocumentRelationship> documentRelationships = new HashSet<DocumentRelationship>();
-        DocumentRelationship documentRelationship = new DocumentRelationship();
-        documentRelationship.setName("doc-rel-1");
-        documentRelationship.setStartDocument(newDocument);
-        documentRelationship.setEndDocument(documentRepository.findOne(19L));
-
-        documentRelationships.add(documentRelationship);
-        newDocument.setDocumentRelationships(documentRelationships);
-        //////////////////////////end test DocumentRelationship/////////////////////
+        ////////////////////////////////////handle DocumentRelationships//////////////////////
+        if(null != recievedDocument.getDocumentRelationships()){
+            Set<DocumentRelationship> documentRelationships = new HashSet<DocumentRelationship>();
+            for(DocumentRelationship rel:recievedDocument.getDocumentRelationships()){
+                rel.setId(null); //so SDN can generate a new one later
+                rel.setStartDocument(newDocument);
+                documentRelationships.add(rel);
+            }
+            newDocument.setDocumentRelationships(documentRelationships);
+        }
+        //////////////////////////end handle DocumentRelationships/////////////////////
 
 
 
@@ -106,7 +117,6 @@ public class DocumentController {
 
         return newDocument;
     }
-
 
     @RequestMapping(value = "/download/{documentrepository}/{documentname}/{filename}.{fileending}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response,

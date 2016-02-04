@@ -28,4 +28,10 @@ public interface DocumentRepository extends GraphRepository<Document>{
     @Query("match (n:Document)-[:referenceToNewVersion*0..]->(m:Document) where id(m)={0}  " +
             "with collect(n) + collect(m) as result unwind result as result2 return result2")
     Iterable<Document> versionHistoryForADocument(Long id);
+
+    /*
+    To work around an issue with SDN.
+     */
+    @Query("match (n:Document)-[:referenceToNewVersion]->(m:Document) where id(n)={0} return m")
+    public Document getSuccessorDocument(Long id);
 }

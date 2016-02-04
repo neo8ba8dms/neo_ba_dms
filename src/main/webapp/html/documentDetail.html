@@ -59,6 +59,49 @@
                 </tbody>
             </table>
         </div>
+        <div ng-hide="isVersionHistoryMode || isCreateMode">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewRelationshipModal" ng-click="showModal()">
+                neue Beziehung zu diesem Dokument anlegen(updaten zum persistieren)
+            </button>
+        </div>
+        <div class="modal fade" id="createNewRelationshipModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                        <div class="modal-body">
+                            <div>
+                                <label>Dokument zu dem Beziehung hergestellt wird:</label>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Dokumentenid</th>
+                                        <th>Dokumentenname</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="doc in listOfRecentDocumentVersions">
+                                        <td>{{doc.id}}</td>
+                                        <td>{{doc.name}}</td>
+                                        <td>
+                                            <input type="radio" ng-model="tmpRelationship.endDocument" ng-value="doc">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div >
+                                <label>Name der Beziehung:</label>
+                                <input type="text" ng-model="tmpRelationship.name">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                            <button type="button" class="btn btn-default" ng-click="createNewRealationship()">save</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
 
     </form>
 
