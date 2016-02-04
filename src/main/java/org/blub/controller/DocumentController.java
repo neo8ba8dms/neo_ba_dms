@@ -107,7 +107,14 @@ public class DocumentController {
 
 
 
-        documentRepository.save(newDocument); //newDocument.id & documentRelationship.id are generated here
+        Document waitResult = documentRepository.save(newDocument); //newDocument.id & documentRelationship.id are generated here
+
+        /*
+            Make shure, that there is a newDocument, before saving the old one(not shure if this works or is even necessary).
+            It seems to fix an issue, where sometimes the oldDocument has no ref to the new one.
+            This is really bad code and should be replaced.
+         */
+        while(waitResult == null);
 
         //reference from (old) --> (new)
         oldDocument.setSuccessorDocument(newDocument);
