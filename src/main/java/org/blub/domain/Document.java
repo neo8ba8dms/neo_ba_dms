@@ -14,10 +14,11 @@ public class Document {
     private String name;
     @Relationship(type="referesTo")
     private Set<External_object_reference> externalObjects;
-    @Relationship(type = "referenceToNewVersion")
+    @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
     private Document successorDocument;
     private String pathToFile;
     private Date wasVersionedAt;
+    @Relationship(type = "relToDocument")
     private Set<DocumentRelationship> documentRelationships;
 
     ////////////////////////////////////////////////////////////////////////
