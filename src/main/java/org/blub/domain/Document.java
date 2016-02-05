@@ -1,5 +1,6 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
@@ -14,6 +15,7 @@ public class Document {
     private String name;
     @Relationship(type="referesTo")
     private Set<External_object_reference> externalObjects;
+    @JsonBackReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
     @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
     private Document successorDocument;
     private String pathToFile;
