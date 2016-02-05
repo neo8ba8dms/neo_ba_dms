@@ -17,18 +17,18 @@ public class External_object_reference_controller {
 
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<External_object_reference> list() {
-        return eorRepository.findAll();
+        return eorRepository.findAll(1);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public External_object_reference create(@RequestBody External_object_reference eor){
-        eorRepository.save(eor);
-        return eorRepository.findOne(eor.getId());
+        eorRepository.save(eor, 1);
+        return eorRepository.findOne(eor.getId(), 1);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public External_object_reference find(@PathVariable Long id){
-        return eorRepository.findOne(id);
+        return eorRepository.findOne(id, 1);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
@@ -38,8 +38,8 @@ public class External_object_reference_controller {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes = "application/json")
     public External_object_reference update(@PathVariable Long id, @RequestBody External_object_reference eor){
-        eorRepository.save(eor);
-        return eorRepository.findOne(id);
+        eorRepository.save(eor, 1);
+        return eorRepository.findOne(id, 1);
     }
 
 }

@@ -36,15 +36,15 @@ public class DocumentController {
     public Document create(@RequestBody Document document){
         Timestamp timestamp = new Timestamp(new Date().getTime());
         document.setWasVersionedAt(timestamp);
-        documentRepository.save(document);
-        return documentRepository.findOne(document.getId());
+        documentRepository.save(document, 1);
+        return documentRepository.findOne(document.getId(), 1);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Document find(@PathVariable Long id){
         Document doc = documentRepository.findOne(id); //does add the predecessor as successor sometimes
-        Document trueSuccessor = documentRepository.getSuccessorDocument(id);
-        doc.setSuccessorDocument(trueSuccessor);
+        //Document trueSuccessor = documentRepository.getSuccessorDocument(id);
+        //doc.setSuccessorDocument(trueSuccessor);
         return doc;
     }
 
@@ -97,9 +97,11 @@ public class DocumentController {
         if(null != recievedDocument.getDocumentRelationships()){
             Set<DocumentRelationship> documentRelationships = new HashSet<DocumentRelationship>();
             for(DocumentRelationship rel:recievedDocument.getDocumentRelationships()){
-                rel.setId(null); //so SDN can generate a new one later
-                rel.setStartDocument(newDocument);
-                documentRelationships.add(rel);
+                DocumentRelationship newRel = new DocumentRelationship();
+                newRel.setStartDocument(newDocument);
+                newRel.setEndDocument(rel.getEndDocument());
+                newRel.setName(rel.getName());
+                documentRelationships.add(newRel);
             }
             newDocument.setDocumentRelationships(documentRelationships);
         }
@@ -107,7 +109,7 @@ public class DocumentController {
 
 
 
-        Document waitResult = documentRepository.save(newDocument); //newDocument.id & documentRelationship.id are generated here
+        Document waitResult = documentRepository.save(newDocument, 1); //newDocument.id & documentRelationship.id are generated here
 
         /*
             Make shure, that there is a newDocument, before saving the old one(not shure if this works or is even necessary).
@@ -118,7 +120,7 @@ public class DocumentController {
 
         //reference from (old) --> (new)
         oldDocument.setSuccessorDocument(newDocument);
-        documentRepository.save(oldDocument);
+        documentRepository.save(oldDocument, 1);
 
         documentService.uploadDocument(file, filename, directoryWhereFileGetsSaved);
 

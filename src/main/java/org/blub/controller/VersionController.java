@@ -24,6 +24,6 @@ public class VersionController {
 
     @RequestMapping(method = RequestMethod.GET, value = "versionDetail/{documentVersionId}")
     public Document getOneVersion(@PathVariable Long documentVersionId){
-        return documentRepository.findOne(documentVersionId);
+        return documentRepository.findOne(documentVersionId, 1);
     }
 }
