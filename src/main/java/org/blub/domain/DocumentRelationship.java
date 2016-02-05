@@ -1,6 +1,7 @@
 package org.blub.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.neo4j.ogm.annotation.*;
 
 @RelationshipEntity(type = "relToDocument")
@@ -17,6 +18,7 @@ public class DocumentRelationship {
     @JsonIgnore
     @StartNode private Document startDocument;
 
+    @JsonManagedReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
     @EndNode private Document endDocument;
 
     public Long getId() {
