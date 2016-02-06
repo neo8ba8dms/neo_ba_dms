@@ -20,8 +20,8 @@ public class Document {
     private Document successorDocument;
     private String pathToFile;
     private Date wasVersionedAt;
-    @Relationship(type = "relToDocument")
-    private Set<DocumentRelationship> documentRelationships;
+    @Relationship(type = "relFromDocumentToDocument")
+    private Set<Document_relationship> documentRelationships;
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -73,11 +73,11 @@ public class Document {
         this.wasVersionedAt = wasVersionedAt;
     }
 
-    public Set<DocumentRelationship> getDocumentRelationships() {
+    public Set<Document_relationship> getDocumentRelationships() {
         return documentRelationships;
     }
 
-    public void setDocumentRelationships(Set<DocumentRelationship> documentRelationships) {
+    public void setDocumentRelationships(Set<Document_relationship> documentRelationships) {
         this.documentRelationships = documentRelationships;
     }
 }

@@ -54,7 +54,7 @@
                 <tr ng-repeat="rel in document.documentRelationships">
                     <td>{{rel.id}}</td>
                     <td>{{rel.name}}</td>
-                    <td>{{rel.endDocument.id}}  ||  {{rel.endDocument.name}}</td>
+                    <td>{{rel.relating_document.id}}  ||  {{rel.relating_document.name}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -82,7 +82,7 @@
                                         <td>{{doc.id}}</td>
                                         <td>{{doc.name}}</td>
                                         <td>
-                                            <input type="radio" ng-model="tmpRelationship.endDocument" ng-value="doc">
+                                            <input type="radio" ng-model="tmpRelationship.relating_document" ng-value="doc">
                                         </td>
                                     </tr>
                                     </tbody>

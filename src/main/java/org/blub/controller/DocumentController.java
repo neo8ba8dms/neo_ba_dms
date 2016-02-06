@@ -1,7 +1,7 @@
 package org.blub.controller;
 
 import org.blub.domain.Document;
-import org.blub.domain.DocumentRelationship;
+import org.blub.domain.Document_relationship;
 import org.blub.repository.DocumentRepository;
 import org.blub.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,12 +94,12 @@ public class DocumentController {
 
         ////////////////////////////////////handle DocumentRelationships//////////////////////
         if(null != recievedDocument.getDocumentRelationships()){
-            Set<DocumentRelationship> documentRelationships = new HashSet<DocumentRelationship>();
-            for(DocumentRelationship rel:recievedDocument.getDocumentRelationships()){
-                DocumentRelationship newRel = new DocumentRelationship();
-                newRel.setStartDocument(newDocument);
-                newRel.setEndDocument(rel.getEndDocument());
-                newRel.setName(rel.getName());
+            Set<Document_relationship> documentRelationships = new HashSet<Document_relationship>();
+            for(Document_relationship rel:recievedDocument.getDocumentRelationships()){
+                Document_relationship newRel = new Document_relationship();
+                newRel.setRelates_document(newDocument);
+                newRel.setRelating_document(rel.getRelating_document());
+                newRel.setRelation_type(rel.getRelation_type());
                 documentRelationships.add(newRel);
             }
             newDocument.setDocumentRelationships(documentRelationships);
