@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
@@ -74,7 +73,7 @@ public class DocumentController {
         Document oldDocument = documentRepository.findOne(recievedDocument.getId());
         Document newDocument = new Document();
         String filename = "";
-        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getName() +
+        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
                 timestamp;
 
         //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
@@ -88,7 +87,7 @@ public class DocumentController {
         }
 
         //new document
-        newDocument.setName(recievedDocument.getName());
+        newDocument.setDocument_id(recievedDocument.getDocument_id());
         newDocument.setExternalObjects(recievedDocument.getExternalObjects());
         newDocument.setWasVersionedAt(timestamp);
         newDocument.setPathToFile(pathToFileForNewDocument);

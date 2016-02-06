@@ -11,8 +11,8 @@ import java.util.Set;
 @NodeEntity
 public class Document {
 
-    @GraphId Long id;
-    private String name;
+    @GraphId Long graphId; //required for neo4j(must be Long)http://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#__graphid_neo4j_id_field
+    private String document_id; //this is the organisation-internal id
     @Relationship(type="referesTo")
     private Set<External_object_reference> externalObjects;
     @JsonBackReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
@@ -26,19 +26,19 @@ public class Document {
     ////////////////////////////////////////////////////////////////////////
 
     public Long getId() {
-        return id;
+        return graphId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.graphId = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDocument_id() {
+        return document_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDocument_id(String document_id) {
+        this.document_id = document_id;
     }
 
     public Set<External_object_reference> getExternalObjects() {
