@@ -88,7 +88,7 @@ public class DocumentController {
 
         //new document
         newDocument.setDocument_id(recievedDocument.getDocument_id());
-        newDocument.setExternalObjects(recievedDocument.getExternalObjects());
+        newDocument.setDocument_version_external_object_reference_relationships(recievedDocument.getDocument_version_external_object_reference_relationships());
         newDocument.setWasVersionedAt(timestamp);
         newDocument.setPathToFile(pathToFileForNewDocument);
 

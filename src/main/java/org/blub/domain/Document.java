@@ -13,8 +13,13 @@ public class Document {
 
     @GraphId Long graphId; //required for neo4j(must be Long)http://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#__graphid_neo4j_id_field
     private String document_id; //this is the organisation-internal id
-    @Relationship(type="referesTo")
-    private Set<External_object_reference> externalObjects;
+
+    /*
+    In the 82045 this is not meant to be an explicit attribute. I'm going with the SDN way, because it is more graph-like.
+    But I'm trying to keep the naming-way of the 82045.
+     */
+    @Relationship(type="relFromDocumentToExternalObject")
+    private Document_version_external_object_reference_relationship document_version_external_object_reference_relationships;
     @JsonBackReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
     @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
     private Document successorDocument;
@@ -41,12 +46,12 @@ public class Document {
         this.document_id = document_id;
     }
 
-    public Set<External_object_reference> getExternalObjects() {
-        return externalObjects;
+    public Document_version_external_object_reference_relationship getDocument_version_external_object_reference_relationships() {
+        return document_version_external_object_reference_relationships;
     }
 
-    public void setExternalObjects(Set<External_object_reference> externalObjects) {
-        this.externalObjects = externalObjects;
+    public void setDocument_version_external_object_reference_relationships(Document_version_external_object_reference_relationship document_version_external_object_reference_relationships) {
+        this.document_version_external_object_reference_relationships = document_version_external_object_reference_relationships;
     }
 
     public String getPathToFile() {
