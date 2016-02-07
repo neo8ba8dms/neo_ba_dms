@@ -18,7 +18,7 @@ public class Document_relationship {
     @JsonIgnore
     @StartNode private Document relates_document;
 
-    @JsonManagedReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
+    //@JsonManagedReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
     @EndNode private Document relating_document;
 
     public Long getGraphId() {

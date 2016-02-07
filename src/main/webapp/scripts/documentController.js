@@ -45,7 +45,7 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
 
         documentUpdateService.updateDocument(uploadUrl, correctDocument).then(function(response){
             $scope.document = response.data; //useless because following reload, but removing breaks something
-            $location.path('documents/' + $scope.document.id);
+            $location.path('documents/' + $scope.document.graphId);
         });
 
     };
