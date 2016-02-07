@@ -39,19 +39,19 @@ public class Document {
      */
     @Relationship(type="relFromDocumentToExternalObject")
     private Set<External_object_reference> external_object_references;
-//    @JsonBackReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
-//    @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
-//    private Document successorDocument;
-//
-//    /*
-//    In the 82045 this is not meant to be an explicit attribute. I'm going with the SDN way, because it is more graph-like.
-//    But I'm trying to keep the naming-way of the 82045.
-//     */
-//    @Relationship(type = "relFromDocumentToDocument")
-//    private Set<Document_relationship> document_relationships;
-//
-//    ////////////////////////////////////////////////////////////////////////
-//
+    //@JsonBackReference //fixes issue, where cyclic dependencies lead to wrong JSON-response
+    @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
+    private Document successorDocument;
+
+    /*
+    In the 82045 this is not meant to be an explicit attribute. I'm going with the SDN way, because it is more graph-like.
+    But I'm trying to keep the naming-way of the 82045.
+     */
+    @Relationship(type = "relFromDocumentToDocument")
+    private Set<Document_relationship> document_relationships;
+
+    ////////////////////////////////////////////////////////////////////////
+
 
     public Long getGraphId() {
         return graphId;
@@ -109,21 +109,21 @@ public class Document {
         this.external_object_references = external_object_references;
     }
 
-//    public Document getSuccessorDocument() {
-//        return successorDocument;
-//    }
-//
-//    public void setSuccessorDocument(Document successorDocument) {
-//        this.successorDocument = successorDocument;
-//    }
-//
-//    public Set<Document_relationship> getDocument_relationships() {
-//        return document_relationships;
-//    }
-//
-//    public void setDocument_relationships(Set<Document_relationship> document_relationships) {
-//        this.document_relationships = document_relationships;
-//    }
+    public Document getSuccessorDocument() {
+        return successorDocument;
+    }
+
+    public void setSuccessorDocument(Document successorDocument) {
+        this.successorDocument = successorDocument;
+    }
+
+    public Set<Document_relationship> getDocument_relationships() {
+        return document_relationships;
+    }
+
+    public void setDocument_relationships(Set<Document_relationship> document_relationships) {
+        this.document_relationships = document_relationships;
+    }
 
     @Override
     public boolean equals(Object o) {
