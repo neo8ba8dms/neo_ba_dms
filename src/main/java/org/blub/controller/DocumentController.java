@@ -61,70 +61,70 @@ public class DocumentController {
     even if nothing has changed in the frontend.
      */
     //// TODO: 30.01.16 move code into service(not that easy)
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Document update(@RequestParam("documentString") String documentString,
-                                                 @RequestParam(value= "file", required=false) MultipartFile file){
-
-        /*
-        The recievedDocument has the new data except for the old id.
-         */
-        Document recievedDocument = documentService.deserializeDocumentString(documentString);
-        Timestamp timestamp = new Timestamp(new Date().getTime());
-        Document oldDocument = documentRepository.findOne(recievedDocument.getGraphId());
-        Document newDocument = new Document();
-        String filename = "";
-        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
-                timestamp;
-
-        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
-        String pathToFileForNewDocument;
-
-        if (file != null && !file.isEmpty()) {
-            filename = file.getOriginalFilename();
-            pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
-        }else{
-            pathToFileForNewDocument = oldDocument.getPath_to_file();
-        }
-
-        //new document
-        newDocument.setDocument_id(recievedDocument.getDocument_id());
-        newDocument.setDocument_version_external_object_reference_relationships(recievedDocument.getDocument_version_external_object_reference_relationships());
-        newDocument.setCreated_at(timestamp);
-        newDocument.setPath_to_file(pathToFileForNewDocument);
-
-        ////////////////////////////////////handle DocumentRelationships//////////////////////
-        if(null != recievedDocument.getDocument_relationships()){
-            Set<Document_relationship> documentRelationships = new HashSet<Document_relationship>();
-            for(Document_relationship rel:recievedDocument.getDocument_relationships()){
-                Document_relationship newRel = new Document_relationship();
-                newRel.setRelates_document(newDocument);
-                newRel.setRelating_document(rel.getRelating_document());
-                newRel.setRelation_type(rel.getRelation_type());
-                documentRelationships.add(newRel);
-            }
-            newDocument.setDocument_relationships(documentRelationships);
-        }
-        //////////////////////////end handle DocumentRelationships/////////////////////
-
-
-
-        Document waitResult = documentRepository.save(newDocument, 1); //newDocument.id & documentRelationship.id are generated here
-
-        /*
-            Make shure, that there is a newDocument, before saving the old one(not shure if this works or is even necessary).
-            It seems to fix an issue, where sometimes the oldDocument has no ref to the new one.
-            This is really bad code and should be replaced.
-         */
-        while(waitResult == null);
-
-        //reference from (old) --> (new)
-        oldDocument.setSuccessorDocument(newDocument);
-        documentRepository.save(oldDocument, 1);
-
-        documentService.uploadDocument(file, filename, directoryWhereFileGetsSaved);
-
-        return newDocument;
-    }
+//    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+//    public Document update(@RequestParam("documentString") String documentString,
+//                                                 @RequestParam(value= "file", required=false) MultipartFile file){
+//
+//        /*
+//        The recievedDocument has the new data except for the old id.
+//         */
+//        Document recievedDocument = documentService.deserializeDocumentString(documentString);
+//        Timestamp timestamp = new Timestamp(new Date().getTime());
+//        Document oldDocument = documentRepository.findOne(recievedDocument.getGraphId());
+//        Document newDocument = new Document();
+//        String filename = "";
+//        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
+//                timestamp;
+//
+//        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
+//        String pathToFileForNewDocument;
+//
+//        if (file != null && !file.isEmpty()) {
+//            filename = file.getOriginalFilename();
+//            pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
+//        }else{
+//            pathToFileForNewDocument = oldDocument.getPath_to_file();
+//        }
+//
+//        //new document
+//        newDocument.setDocument_id(recievedDocument.getDocument_id());
+//        newDocument.setExternal_object_reference(recievedDocument.getExternal_object_reference());
+//        newDocument.setCreated_at(timestamp);
+//        newDocument.setPath_to_file(pathToFileForNewDocument);
+//
+//        ////////////////////////////////////handle DocumentRelationships//////////////////////
+//        if(null != recievedDocument.getDocument_relationships()){
+//            Set<Document_relationship> documentRelationships = new HashSet<Document_relationship>();
+//            for(Document_relationship rel:recievedDocument.getDocument_relationships()){
+//                Document_relationship newRel = new Document_relationship();
+//                newRel.setRelates_document(newDocument);
+//                newRel.setRelating_document(rel.getRelating_document());
+//                newRel.setRelation_type(rel.getRelation_type());
+//                documentRelationships.add(newRel);
+//            }
+//            newDocument.setDocument_relationships(documentRelationships);
+//        }
+//        //////////////////////////end handle DocumentRelationships/////////////////////
+//
+//
+//
+//        Document waitResult = documentRepository.save(newDocument, 1); //newDocument.id & documentRelationship.id are generated here
+//
+//        /*
+//            Make shure, that there is a newDocument, before saving the old one(not shure if this works or is even necessary).
+//            It seems to fix an issue, where sometimes the oldDocument has no ref to the new one.
+//            This is really bad code and should be replaced.
+//         */
+//        while(waitResult == null);
+//
+//        //reference from (old) --> (new)
+//        oldDocument.setSuccessorDocument(newDocument);
+//        documentRepository.save(oldDocument, 1);
+//
+//        documentService.uploadDocument(file, filename, directoryWhereFileGetsSaved);
+//
+//        return newDocument;
+//    }
 
     @RequestMapping(value = "/download/{documentrepository}/{documentname}/{filename}.{fileending}", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response,

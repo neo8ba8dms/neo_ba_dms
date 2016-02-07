@@ -4,19 +4,19 @@
     <button ng-show="isCreateMode" ui-sref="documents" class="btn btn-default">zurück</button>
     <button ng-show="isCreateMode" class="btn btn-default" ng-click="createNewDocument()">neues Dokument anlegen</button>
 
-    <h2 ng-show="isUpdateMode">Details für Dokument: {{document.name}} mit Id = {{document.id}}</h2>
+    <h2 ng-show="isUpdateMode">Details für Dokument: {{document.document_id}}</h2>
     <button ng-show="isUpdateMode" ui-sref="documents" class="btn btn-default">zurück</button>
     <button ng-show="isUpdateMode" class="btn btn-default" ng-click="updateDocument()">update</button>
 
-    <h2 ng-show="isVersionHistoryMode">Dokumentenversion(nur ansehbar) für: {{document.name}} mit Id = {{document.id}} </h2>
+    <h2 ng-show="isVersionHistoryMode">Dokumentenversion(nur ansehbar) für: {{document.document_id}} </h2>
     <button ng-show="isVersionHistoryMode" ui-sref="documents" class="btn btn-default">zurück zur Dokumentenliste</button>
     <!--end main-state-dependend config-->
     <!--some more config needed below-->
 
     <form name="documentDetailForm" role="form" novalidate>
         <hr size="10">
-        <label>Name: </label>
-        <input type="text" ng-model="document.name">
+        <label>ID: </label>
+        <input type="text" ng-model="document.document_id">
 
         <div style="background-color: lightgrey">
             <label>externe Objekte: </label></br>
