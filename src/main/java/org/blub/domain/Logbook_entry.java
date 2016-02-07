@@ -9,6 +9,9 @@ import java.util.Date;
     Does this get a separate node in neo4J? --> yes
     Needs a Relationship to classes that use it.
     Naming scheme: "relFrom<using class>ToLogbookEntry"
+
+    This entity will for simplicity-puposes be created with the document-version. It gets its own REST-endpoint.
+    The description will be made by the user.
  */
 @NodeEntity
 public class Logbook_entry {

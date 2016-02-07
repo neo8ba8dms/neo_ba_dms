@@ -9,10 +9,17 @@
                 <form name="externalObjectForm" novalidate ng-submit="createNewExternalObject()">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Name des Objektes</label>
+                            <label>Id des Objektes:</label>
+                            <input type="text" ng-model="externalObject.id">
+                        </div>
+                        <div class="form-group">
+                            <label>Name des Objektes:</label>
                             <input type="text" ng-model="externalObject.description">
                         </div>
-
+                        <div class="form-group">
+                            <label>Typ des Objektes:</label>
+                            <input type="text" ng-model="externalObject.type">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
@@ -29,18 +36,22 @@
             <tr>
                 <th>Id</th>
                 <th>Beschreibung</th>
+                <th>Typ</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="eor in externalObjects">
                 <td>
-                    <a ui-sref="externalObjectDetails({id:eor.id})">{{eor.id}}</a>
+                    <a ui-sref="externalObjectDetails({id:eor.graphId})">{{eor.id}}</a>
                 </td>
                 <td>
-                    <a ui-sref="externalObjectDetails({id:eor.id})">{{eor.description}}</a>
+                    <a ui-sref="externalObjectDetails({id:eor.graphId})">{{eor.description}}</a>
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-default" ng-click="delete(eor.id)">löschen</button>
+                    <a ui-sref="externalObjectDetails({id:eor.graphId})">{{eor.type}}</a>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-default" ng-click="delete(eor.graphId)">löschen</button>
                 </td>
             </tr>
             </tbody>

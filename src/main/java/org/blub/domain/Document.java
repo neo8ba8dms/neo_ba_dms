@@ -15,7 +15,22 @@ public class Document {
     private String document_id; //this is the organisation-internal id
     private String path_to_file;
     private Date created_at;
+
+    /*
+    From the 82045:"Specifies the language(s) in which a document version is produced.
+        The predefined values shall be selected from the 2-letter language code as given in ISO 639-1.
+        NOTE
+        It should be noted that ISO 639-1 provides the language code by lower-case characters.
+    Interpretation/implementation: For simplicity text field with button to add(no delete) and a div for output.
+    Could of course be made much better.
+     */
     private Set<String> language;
+
+    /*
+    From the 82045: "Specifies language-bound descriptive text associated with a Document_version."
+    Interpretation/implementation: clicking on button "new description" make modal with ass. attributes.
+    Additionally one div to show all descriptions(only ass. with one version).
+     */
     @Relationship(type = "relFromDocumentToDescription")
     private Set<Description> descriptions;
 
