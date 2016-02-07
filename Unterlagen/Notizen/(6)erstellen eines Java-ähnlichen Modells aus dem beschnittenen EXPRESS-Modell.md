@@ -82,6 +82,7 @@ enum document_relationship_type{
     SEQUENCE,
     SUPPLIED
 }    
+//delete this 
 enum role_type{
     AUTHOR,
     CREATOR,
@@ -109,14 +110,15 @@ enum description_enumeration_type{
     RESOLUTION,
     EXPERIENCE
 }    
+//document and version are combined through versioning-architecture
 class Document{
     String document_id;
     Set<Document_class> classified_as;
-    Set<Document_version> has_versions; //Bidirektional
+    Set<Document_version> has_versions; //Bidirektional//to delete
 }
 class Document_version{
-    String document_version_id;
-    Document version_of;    //anderes Ende der obigen Bidirektionalen Beziehung
+    String document_version_id; //to delete
+    Document version_of;    //anderes Ende der obigen Bidirektionalen Beziehung//to delete
     Date created_at;
     String path_to_file;
     Set<Description> descriptions
@@ -132,6 +134,7 @@ class Document_class{
     String uses_classification_system;
     Set<Description> description;
 }
+//to delete, because Document and version combined
 class Document_version_relationship{
     Document_version relates;
     Document_version relating;
