@@ -23,7 +23,7 @@ public class External_object_reference_controller {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public External_object_reference create(@RequestBody External_object_reference eor){
         eorRepository.save(eor, 1);
-        return eorRepository.findOne(eor.getId(), 1);
+        return eorRepository.findOne(eor.getGraphId(), 1);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

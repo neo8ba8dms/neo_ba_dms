@@ -34,9 +34,9 @@ public class DocumentController {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public Document create(@RequestBody Document document){
         Timestamp timestamp = new Timestamp(new Date().getTime());
-        document.setWasVersionedAt(timestamp);
+        document.setCreated_at(timestamp);
         documentRepository.save(document, 1);
-        return documentRepository.findOne(document.getId(), 1);
+        return documentRepository.findOne(document.getGraphId(), 1);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
@@ -70,7 +70,7 @@ public class DocumentController {
          */
         Document recievedDocument = documentService.deserializeDocumentString(documentString);
         Timestamp timestamp = new Timestamp(new Date().getTime());
-        Document oldDocument = documentRepository.findOne(recievedDocument.getId());
+        Document oldDocument = documentRepository.findOne(recievedDocument.getGraphId());
         Document newDocument = new Document();
         String filename = "";
         String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
@@ -83,26 +83,26 @@ public class DocumentController {
             filename = file.getOriginalFilename();
             pathToFileForNewDocument =  directoryWhereFileGetsSaved + "/" + filename;
         }else{
-            pathToFileForNewDocument = oldDocument.getPathToFile();
+            pathToFileForNewDocument = oldDocument.getPath_to_file();
         }
 
         //new document
         newDocument.setDocument_id(recievedDocument.getDocument_id());
         newDocument.setDocument_version_external_object_reference_relationships(recievedDocument.getDocument_version_external_object_reference_relationships());
-        newDocument.setWasVersionedAt(timestamp);
-        newDocument.setPathToFile(pathToFileForNewDocument);
+        newDocument.setCreated_at(timestamp);
+        newDocument.setPath_to_file(pathToFileForNewDocument);
 
         ////////////////////////////////////handle DocumentRelationships//////////////////////
-        if(null != recievedDocument.getDocumentRelationships()){
+        if(null != recievedDocument.getDocument_relationships()){
             Set<Document_relationship> documentRelationships = new HashSet<Document_relationship>();
-            for(Document_relationship rel:recievedDocument.getDocumentRelationships()){
+            for(Document_relationship rel:recievedDocument.getDocument_relationships()){
                 Document_relationship newRel = new Document_relationship();
                 newRel.setRelates_document(newDocument);
                 newRel.setRelating_document(rel.getRelating_document());
                 newRel.setRelation_type(rel.getRelation_type());
                 documentRelationships.add(newRel);
             }
-            newDocument.setDocumentRelationships(documentRelationships);
+            newDocument.setDocument_relationships(documentRelationships);
         }
         //////////////////////////end handle DocumentRelationships/////////////////////
 

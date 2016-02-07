@@ -23,7 +23,7 @@
                         <a ui-sref="documentDetailsUpdate({id:doc.id})">{{doc.name}}</a>
                     </td>
                     <td>
-                        {{doc.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}
+                        {{doc.created_at | date:'HH:mm:ss || dd.MM.yyyy'}}
                     </td>
                     <td>
                         <button type="button" class="btn btn-default" ui-sref="versionHistory({idOfNewestDocument:doc.id})">Versionsgeschichte</button>

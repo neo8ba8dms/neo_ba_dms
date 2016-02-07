@@ -29,14 +29,14 @@
         </div>
         <div ng-hide="isCreateMode">
             <label>Speicherzeitpunkt:</label>
-            {{document.wasVersionedAt | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
+            {{document.created_at | date:'HH:mm:ss || dd.MM.yyyy'}}</div>
         <div ng-hide="isCreateMode || isVersionHistoryMode" style="background-color: lightgrey">
             <label>Datei hochladen:</label>
             <input type="file" file-model="document.file"/>
         </div>
         <div ng-hide="isCreateMode">
             <label>aktuellste Datei:</label>
-            <a ng-href="api/documents/download/{{document.pathToFile}}">{{document.pathToFile}}</a>
+            <a ng-href="api/documents/download/{{document.path_to_file}}">{{document.path_to_file}}</a>
         </div>
         <br>
         <br>
@@ -51,7 +51,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="rel in document.documentRelationships">
+                <tr ng-repeat="rel in document.document_relationships">
                     <td>{{rel.id}}</td>
                     <td>{{rel.name}}</td>
                     <td>{{rel.relating_document.id}}  ||  {{rel.relating_document.name}}</td>
