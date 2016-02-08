@@ -140,6 +140,7 @@ class Document_version_relationship{
     Document_version relating;
     Document_relationship_type relation_type;
 }
+//not really relevant (and to much to do for that little)
 class Logbook_entry{
     String description;
     Document_version is_related_to;
