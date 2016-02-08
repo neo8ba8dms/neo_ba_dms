@@ -59,10 +59,10 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
 
     $scope.createNewRealationship = function(){
         //add relationship to list
-        if(!$scope.document.documentRelationships){
-            $scope.document.documentRelationships = [];
+        if(!$scope.document.document_relationships){
+            $scope.document.document_relationships = [];
         }
-        $scope.document.documentRelationships.push($scope.tmpRelationship);
+        $scope.document.document_relationships.push($scope.tmpRelationship);
         //reset the addable relationship
         $scope.tmpRelationship = {};
         $('#createNewRelationshipModal').modal('hide');

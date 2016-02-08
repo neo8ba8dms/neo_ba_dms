@@ -45,16 +45,12 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Id der Beziehung</th>
-                    <th>Name der Beziehung</th>
-                    <th>referenziertes Dokument(Id || Name)</th>
+                    <th>referenziertes Dokument</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="rel in document.document_relationships">
-                    <td>{{rel.id}}</td>
-                    <td>{{rel.name}}</td>
-                    <td>{{rel.relating_document.id}}  ||  {{rel.relating_document.name}}</td>
+                    <td>{{rel.relating_document.document_id}}</td>
                 </tr>
                 </tbody>
             </table>
