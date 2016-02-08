@@ -25,7 +25,7 @@ angular.module('dmsApp').controller('documentOverviewController', function($scop
 angular.module('dmsApp').controller('documentDetailsUpdateController', function($scope, $stateParams, $location, documentService, eorService, documentUpdateService) {
 
     $scope.document = {};
-    $scope.externalObjects = {};
+    $scope.external_object_references = {};
     $scope.isUpdateMode = true;
     $scope.listOfRecentDocumentVersions = {};
     $scope.tmpRelationship = {};
@@ -71,7 +71,7 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     //initial
     $scope.loadDocument($stateParams.id);
     eorService.query(function(eors){
-        $scope.externalObjects = eors;
+        $scope.external_object_references = eors;
     });
 });
 
@@ -79,7 +79,7 @@ angular.module('dmsApp').controller('documentDetailsCreateController', function(
 
     $scope.document = {};
     $scope.lastCreatedDocument = {};
-    $scope.externalObjects;
+    $scope.external_object_references;
     $scope.isCreateMode = true;
     $scope.showNewDocument = false;
 
@@ -93,7 +93,7 @@ angular.module('dmsApp').controller('documentDetailsCreateController', function(
 
     //initial
     eorService.query(function(eors){
-        $scope.externalObjects = eors;
+        $scope.external_object_references = eors;
     });
 });
 

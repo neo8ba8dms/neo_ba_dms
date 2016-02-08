@@ -16,7 +16,7 @@ angular.module('dmsApp').controller('versionHistoryDetailsController', function(
 
     $scope.document = {}; //name is needed do fit with documentDetails.html-template
     $scope.isVersionHistoryMode = true;
-    $scope.externalObjects;
+    $scope.external_object_references;
 
 
     $scope.loadDocumentVersion = function(){
@@ -28,6 +28,6 @@ angular.module('dmsApp').controller('versionHistoryDetailsController', function(
     //initial
     $scope.loadDocumentVersion();
     eorService.query(function(eors){
-        $scope.externalObjects = eors;
+        $scope.external_object_references = eors;
     });
 });

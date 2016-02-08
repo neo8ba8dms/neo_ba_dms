@@ -41,7 +41,7 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Document find(@PathVariable Long id){
-        Document doc = documentRepository.findOne(id); //does add the predecessor as successor sometimes
+        Document doc = documentRepository.findOne(id, 1); //does add the predecessor as successor sometimes
         //Document trueSuccessor = documentRepository.getSuccessorDocument(id);
         //doc.setSuccessorDocument(trueSuccessor);
         return doc;
@@ -76,7 +76,7 @@ public class DocumentController {
         String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
                 timestamp;
 
-        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods//// TODO: 07.02.16 changed
+        //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
         String pathToFileForNewDocument;
 
         if (file != null && !file.isEmpty()) {

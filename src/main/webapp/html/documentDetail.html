@@ -20,10 +20,10 @@
 
         <div style="background-color: lightgrey">
             <label>externe Objekte: </label></br>
-            <div class="row" ng-repeat="eor in externalObjects">
+            <div class="row" ng-repeat="eor in external_object_references">
                 <label >
-                    <input type="checkbox" checklist-model="document.externalObjects" checklist-value="eor">
-                    {{eor.description}}
+                    <input type="checkbox" checklist-model="document.external_object_references" checklist-value="eor">
+                    {{eor.id}}
                 </label>
             </div>
         </div>
@@ -74,13 +74,11 @@
                                     <thead>
                                     <tr>
                                         <th>Dokumentenid</th>
-                                        <th>Dokumentenname</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="doc in listOfRecentDocumentVersions">
-                                        <td>{{doc.id}}</td>
-                                        <td>{{doc.name}}</td>
+                                        <td>{{doc.document_id}}</td>
                                         <td>
                                             <input type="radio" ng-model="tmpRelationship.relating_document" ng-value="doc">
                                         </td>
@@ -89,8 +87,8 @@
                                 </table>
                             </div>
                             <div >
-                                <label>Name der Beziehung:</label>
-                                <input type="text" ng-model="tmpRelationship.name">
+                                <label>Typ der Beziehung:</label>
+                                <input type="text" ng-model="tmpRelationship.relation_type">
                             </div>
 
                         </div>
