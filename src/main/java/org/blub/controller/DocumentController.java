@@ -91,6 +91,7 @@ public class DocumentController {
         newDocument.setExternal_object_references(recievedDocument.getExternal_object_references());
         newDocument.setCreated_at(timestamp);
         newDocument.setPath_to_file(pathToFileForNewDocument);
+        newDocument.setDescriptions(recievedDocument.getDescriptions());
 
         ////////////////////////////////////handle DocumentRelationships//////////////////////
         if(null != recievedDocument.getDocument_relationships()){

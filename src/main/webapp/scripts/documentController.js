@@ -29,6 +29,7 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     $scope.isUpdateMode = true;
     $scope.listOfRecentDocumentVersions = {};
     $scope.tmpRelationship = {};
+    $scope.tmpDescription = {};
 
     $scope.loadDocument = function(id){
         documentService.get({id: id}, function(doc){
@@ -51,7 +52,7 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     };
 
     //todo should be made generic
-    $scope.showModal = function(){
+    $scope.showRelationsModal = function(){
         documentService.query(function(docs){
             $scope.listOfRecentDocumentVersions = docs;
         });
@@ -66,6 +67,15 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
         //reset the addable relationship
         $scope.tmpRelationship = {};
         $('#createNewRelationshipModal').modal('hide');
+    };
+
+    $scope.createNewDescription = function(){
+        if(!$scope.document.descriptions){
+            $scope.document.descriptions = [];
+        }
+      $scope.document.descriptions.push($scope.tmpDescription);
+      $scope.tmpDescription = {};
+      $('#createNewDescriptionModal').modal('hide');
     };
 
     //initial

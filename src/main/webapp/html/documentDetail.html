@@ -55,9 +55,33 @@
                 </tbody>
             </table>
         </div>
+        <div ng-hide="isCreateMode">
+            <label>Beschreibungen: </label>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Beschreibung</th>
+                    <th>Typ</th>
+                    <th>Sprache</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="descr in document.descriptions">
+                    <td>{{descr.textual_description}}</td>
+                    <td>{{descr.type_of}}</td>
+                    <td>{{descr.language_code}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div ng-hide="isVersionHistoryMode || isCreateMode">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewRelationshipModal" ng-click="showModal()">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewRelationshipModal" ng-click="showRelationsModal()">
                 neue Beziehung zu diesem Dokument anlegen(updaten zum persistieren)
+            </button>
+        </div>
+        <div ng-hide="isVersionHistoryMode || isCreateMode">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewDescriptionModal" ng-click="showDescriptionsModal()">
+                neue Beschreibung zu diesem Dokument anlegen(updaten zum persistieren)
             </button>
         </div>
         <div class="modal fade" id="createNewRelationshipModal" role="dialog" tabindex="-1">
@@ -96,7 +120,41 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="createNewDescriptionModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div >
+                            <label>Beschreibung: </label>
+                            <input type="text" ng-model="tmpDescription.textual_description">
+                        </div>
+                        <div>
+                            <label>Beschreibungstyp: </label>
+                            <select ng-model="tmpDescription.type_of">
+                                <option value="TITLE">TITLE</option>
+                                <option value="DESCRIPTION">DESCRIPTION</option>
+                                <option value="KEYWORD">KEYWORD</option>
+                                <option value="SUMMARY">SUMMARY</option>
+                                <option value="COMMENT">COMMENT</option>
+                                <option value="PROPOSAL">PROPOSAL</option>
+                                <option value="RESOLUTION">RESOLUTION</option>
+                                <option value="EXPERRIENCE">EXPERRIENCE</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Sprachcode: </label>
+                            <input type="text" ng-model="tmpDescription.language_code">
+                        </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="button" class="btn btn-default" ng-click="createNewDescription()">save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </form>
 
     <div ng-show="showNewDocument">neues Dokument angelegt: {{lastCreatedDocument}}</div>

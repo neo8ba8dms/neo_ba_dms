@@ -28,8 +28,8 @@ public class Document {
 
     /*
     From the 82045: "Specifies language-bound descriptive text associated with a Document_version."
-    Interpretation/implementation: clicking on button "new description" make modal with ass. attributes.
-    Additionally one div to show all descriptions(only ass. with one version).
+    Interpretation/implementation: clicking on button "new description" make modal with assosiated attributes.
+    Additionally one div to show all descriptions(only assosiated with one version).
      */
     @Relationship(type = "relFromDocumentToDescription")
     private Set<Description> descriptions;
