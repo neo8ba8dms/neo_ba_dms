@@ -45,11 +45,13 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>Beziehungstyp</th>
                     <th>referenziertes Dokument</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="rel in document.document_relationships">
+                    <td>{{rel.relation_type}}</td>
                     <td>{{rel.relating_document.document_id}}</td>
                 </tr>
                 </tbody>
