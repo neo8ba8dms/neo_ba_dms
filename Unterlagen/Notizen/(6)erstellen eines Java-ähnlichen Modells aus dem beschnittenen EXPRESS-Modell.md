@@ -150,6 +150,7 @@ class Description{
     Description_enumeration_type type_of;
     String language_code;
 }
+//delete, because no attr. and makes everything else way more complicated(only SDN-rel-annotation)
 class Document_version_external_object_reference_relationship{
     Document_version relates;
     External_object_reference relating;
