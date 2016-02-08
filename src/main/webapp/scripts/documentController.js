@@ -30,6 +30,19 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     $scope.listOfRecentDocumentVersions = {};
     $scope.tmpRelationship = {};
     $scope.tmpDescription = {};
+    $scope.tmpLanguage = null;
+
+    $scope.addLanguage = function(){
+        if(!$scope.document.language){
+            $scope.document.language = [];
+        }
+        //eliminate duplicates
+        console.log($scope.document.language.indexOf($scope.tmpLanguage));
+        if($scope.document.language.indexOf($scope.tmpLanguage) == -1){
+            $scope.document.language.push($scope.tmpLanguage);
+        }
+        $scope.tmpLanguage = null;
+    };
 
     $scope.loadDocument = function(id){
         documentService.get({id: id}, function(doc){

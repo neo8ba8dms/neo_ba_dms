@@ -92,6 +92,7 @@ public class DocumentController {
         newDocument.setCreated_at(timestamp);
         newDocument.setPath_to_file(pathToFileForNewDocument);
         newDocument.setDescriptions(recievedDocument.getDescriptions());
+        newDocument.setLanguage(recievedDocument.getLanguage());
 
         ////////////////////////////////////handle DocumentRelationships//////////////////////
         if(null != recievedDocument.getDocument_relationships()){
