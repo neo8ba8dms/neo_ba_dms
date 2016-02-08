@@ -9,6 +9,11 @@
 - start application with: "mvn spring-boot:run"
 - view application on "http://localhost:8080"
 
+####offers a neo4J-database with testdata
+- to use it, open this file: <neo4J-directory>/conf/neo4j-server.properties
+- change, where neo4J is looking for a database in this line:"org.neo4j.server.database.location=<your current location>"
+- the new location is in the git-repository ".../neo_ba_dms/graph.db"
+
 ####has still bugs:
 - clicking very fast on the buttons can get the app into an error-state which requires restart
 - deleting can get the app into an inconsistent state, because there is very little error-handling
