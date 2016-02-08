@@ -76,13 +76,16 @@
                 </tbody>
             </table>
         </div>
-        <div style="background-color: lightgrey">
+        <div ng-hide="isCreateMode || isVersionHistoryMode" style="background-color: lightgrey">
             <label>Neue Sprache zum Dokument hinzufügen(keine Duplikate): </label>
             <input type="text" ng-model="tmpLanguage">
             <button type="button" class="btn btn-default" ng-click="addLanguage()">hinzufügen</button>
         </div>
-        <div ng-repeat="lang in document.language">
-            <label>{{lang}}</label>
+        <div>
+            <label>Sprachen:</label>
+            <div ng-repeat="lang in document.language">
+                <label>{{lang}}</label>
+            </div>
         </div>
         <div ng-hide="isVersionHistoryMode || isCreateMode">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewRelationshipModal" ng-click="showRelationsModal()">
