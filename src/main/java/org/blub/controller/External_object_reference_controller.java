@@ -38,6 +38,9 @@ public class External_object_reference_controller {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes = "application/json")
     public External_object_reference update(@PathVariable Long id, @RequestBody External_object_reference eor){
+        if(null == eor.getGraphId()){
+            eor.setGraphId(id); //would otherwise create new node in neo4J instead of updating this one
+        }
         eorRepository.save(eor, 1);
         return eorRepository.findOne(id, 1);
     }
