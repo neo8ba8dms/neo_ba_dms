@@ -3,9 +3,9 @@ package org.blub.repository;
 import org.blub.domain.Document;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
+@RepositoryRestResource(exported = false) //stop spring boot from exposing entities over REST automatically
 public interface DocumentRepository extends GraphRepository<Document>{
 
     /*
