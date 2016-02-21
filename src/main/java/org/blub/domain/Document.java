@@ -13,7 +13,8 @@ import java.util.Set;
 public class Document {
 
     @GraphId Long graphId; //required for neo4j(must be Long)http://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#__graphid_neo4j_id_field
-    private String document_id; //this is the organisation-internal id
+    @Relationship(type = "relFromDocumentToDocumentId")
+    private Document_id primary_document_id; //this is the organisation-internal id
     private String path_to_file;
     private Date created_at;
 
@@ -52,6 +53,8 @@ public class Document {
     @Relationship(type = "relFromDocumentToDocument", direction = Relationship.OUTGOING)
     private Set<Document_relationship> document_relationships;
 
+    @Relationship(type = "relFromDocumentToDocumentClass")
+    private Set<Document_class> classified_as; //values of IEC 61355
     ////////////////////////////////////////////////////////////////////////
 
 
@@ -63,12 +66,12 @@ public class Document {
         this.graphId = graphId;
     }
 
-    public String getDocument_id() {
-        return document_id;
+    public Document_id getPrimary_document_id() {
+        return primary_document_id;
     }
 
-    public void setDocument_id(String document_id) {
-        this.document_id = document_id;
+    public void setPrimary_document_id(Document_id primary_document_id) {
+        this.primary_document_id = primary_document_id;
     }
 
     public String getPath_to_file() {
@@ -127,6 +130,14 @@ public class Document {
         this.document_relationships = document_relationships;
     }
 
+    public Set<Document_class> getClassified_as() {
+        return classified_as;
+    }
+
+    public void setClassified_as(Set<Document_class> classified_as) {
+        this.classified_as = classified_as;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -135,14 +146,17 @@ public class Document {
         Document document = (Document) o;
 
         if (graphId != null ? !graphId.equals(document.graphId) : document.graphId != null) return false;
-        return document_id != null ? document_id.equals(document.document_id) : document.document_id == null;
+        if (primary_document_id != null ? !primary_document_id.equals(document.primary_document_id) : document.primary_document_id != null)
+            return false;
+        return created_at != null ? created_at.equals(document.created_at) : document.created_at == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = graphId != null ? graphId.hashCode() : 0;
-        result = 31 * result + (document_id != null ? document_id.hashCode() : 0);
+        result = 31 * result + (primary_document_id != null ? primary_document_id.hashCode() : 0);
+        result = 31 * result + (created_at != null ? created_at.hashCode() : 0);
         return result;
     }
 }

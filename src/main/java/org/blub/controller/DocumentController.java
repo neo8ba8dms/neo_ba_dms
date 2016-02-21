@@ -73,7 +73,7 @@ public class DocumentController {
         Document oldDocument = documentRepository.findOne(recievedDocument.getGraphId());
         Document newDocument = new Document();
         String filename = "";
-        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getDocument_id() +
+        String directoryWhereFileGetsSaved = "documentrepository/" + recievedDocument.getPrimary_document_id() +
                 timestamp;
 
         //example: /documentrepository/document12016-01-27 01:10:46.367/produktiv.ods
@@ -87,7 +87,7 @@ public class DocumentController {
         }
 
         //new document
-        newDocument.setDocument_id(recievedDocument.getDocument_id());
+        newDocument.setPrimary_document_id(recievedDocument.getPrimary_document_id());
         newDocument.setExternal_object_references(recievedDocument.getExternal_object_references());
         newDocument.setCreated_at(timestamp);
         newDocument.setPath_to_file(pathToFileForNewDocument);

@@ -14,8 +14,8 @@ import java.util.Set;
 public class Document_class {
 
     @GraphId Long graphId;
-    private String id;
-    private String uses_classification_system;
+    private String id; // the values in the IEC 61355
+    private Classification_system uses_classification_system = new Classification_system(); //there is now only one
     private Set<Description> description;
 
     public Long getGraphId() {
@@ -34,11 +34,11 @@ public class Document_class {
         this.id = id;
     }
 
-    public String getUses_classification_system() {
+    public Classification_system getUses_classification_system() {
         return uses_classification_system;
     }
 
-    public void setUses_classification_system(String uses_classification_system) {
+    public void setUses_classification_system(Classification_system uses_classification_system) {
         this.uses_classification_system = uses_classification_system;
     }
 
