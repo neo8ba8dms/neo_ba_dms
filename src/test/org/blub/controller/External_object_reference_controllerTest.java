@@ -89,6 +89,7 @@ public class External_object_reference_controllerTest {
         mockMvc.perform(post("/api/eor")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(eor)))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is("myId")));
     }
 
