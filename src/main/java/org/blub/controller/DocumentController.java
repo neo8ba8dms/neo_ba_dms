@@ -41,7 +41,7 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Document find(@PathVariable Long id){
-        Document doc = documentRepository.findOne(id, 1); //does add the predecessor as successor sometimes
+        Document doc = documentRepository.findOne(id, 2); //does add the predecessor as successor sometimes
         //Document trueSuccessor = documentRepository.getSuccessorDocument(id);
         //doc.setSuccessorDocument(trueSuccessor);
         return doc;
