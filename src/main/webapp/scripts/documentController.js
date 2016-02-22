@@ -31,6 +31,19 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     $scope.tmpRelationship = {};
     $scope.tmpDescription = {};
     $scope.tmpLanguage = null;
+    $scope.tmpDocumentClass = null;
+
+    $scope.addClassification = function(){
+        if(!$scope.document.classified_as){
+            $scope.document.classified_as = [];
+        }
+        //eliminate duplicates
+        console.log($scope.document.classified_as.indexOf($scope.tmpDocumentClass));
+        if($scope.document.classified_as.indexOf($scope.tmpDocumentClass) == -1){
+            $scope.document.classified_as.push($scope.tmpDocumentClass);
+        }
+        $scope.tmpDocumentClass = null;
+    };
 
     $scope.addLanguage = function(){
         if(!$scope.document.language){

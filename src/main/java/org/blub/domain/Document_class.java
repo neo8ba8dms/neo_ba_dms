@@ -16,7 +16,7 @@ public class Document_class {
     @GraphId Long graphId;
     private String id; // the values in the IEC 61355
     private Classification_system uses_classification_system = new Classification_system(); //there is now only one
-    private Set<Description> description;
+    private String description; //changed from Set<Description> to String for simplicity/clarity
 
     public Long getGraphId() {
         return graphId;
@@ -42,11 +42,11 @@ public class Document_class {
         this.uses_classification_system = uses_classification_system;
     }
 
-    public Set<Description> getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Set<Description> description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -58,7 +58,10 @@ public class Document_class {
         Document_class that = (Document_class) o;
 
         if (graphId != null ? !graphId.equals(that.graphId) : that.graphId != null) return false;
-        return id != null ? id.equals(that.id) : that.id == null;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (uses_classification_system != null ? !uses_classification_system.equals(that.uses_classification_system) : that.uses_classification_system != null)
+            return false;
+        return description != null ? description.equals(that.description) : that.description == null;
 
     }
 
@@ -66,6 +69,8 @@ public class Document_class {
     public int hashCode() {
         int result = graphId != null ? graphId.hashCode() : 0;
         result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (uses_classification_system != null ? uses_classification_system.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 }

@@ -90,6 +90,19 @@
                 <label>{{lang}}</label>
             </div>
         </div>
+        <div style="background-color: lightgrey">
+            <label>Dokument-Klassifikation: </label>
+            <label>Neue Klassifikation hinzufügen: </label>
+            <br>
+            <label>ID: </label>
+            <input type="text" ng-model="tmpDocumentClass.id">
+            <label>Beschreibung: </label>
+            <input type="text" ng-model="tmpDocumentClass.description">
+            <button type="button" class="btn btn-default" ng-click="addClassification()">hinzufügen</button>
+            <div ng-repeat="class in document.classified_as">
+                <label>{{class.id}}---{{class.description}}</label>
+            </div>
+        </div>
         <div ng-hide="isVersionHistoryMode || isCreateMode">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewRelationshipModal" ng-click="showRelationsModal()">
                 neue Beziehung zu diesem Dokument anlegen(updaten zum persistieren)

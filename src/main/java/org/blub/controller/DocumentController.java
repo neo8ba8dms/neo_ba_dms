@@ -93,6 +93,7 @@ public class DocumentController {
         newDocument.setPath_to_file(pathToFileForNewDocument);
         newDocument.setDescriptions(recievedDocument.getDescriptions());
         newDocument.setLanguage(recievedDocument.getLanguage());
+        newDocument.setClassified_as(recievedDocument.getClassified_as());
 
         ////////////////////////////////////handle DocumentRelationships//////////////////////
         if(null != recievedDocument.getDocument_relationships()){
