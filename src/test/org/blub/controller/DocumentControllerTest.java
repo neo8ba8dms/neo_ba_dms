@@ -3,6 +3,8 @@ package org.blub.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.blub.Application;
 import org.blub.domain.Document;
+import org.blub.domain.Document_id;
+import org.blub.domain.Document_id_domain;
 import org.blub.domain.External_object_reference;
 import org.blub.repository.DocumentRepository;
 import org.blub.repository.External_object_reference_repository;
@@ -69,9 +71,25 @@ public class DocumentControllerTest {
         Document document3_v0 = new Document();
         Document document3_v1 = new Document();
         Document document3_v2 = new Document();
-        document1_v0.setDocument_id("shouldBeReturned1");
-        document2_v0.setDocument_id("shouldBeReturned2");
-        document3_v2.setDocument_id("shouldBeReturned3");
+
+        //handle new document-id's
+        Document_id_domain document_id_domain = new Document_id_domain();
+        document_id_domain.setId("document-id-domain-example");
+        Document_id document_id1 = new Document_id();
+        document_id1.setDomain(document_id_domain);
+        document_id1.setId("doc-id-1");
+        Document_id document_id2 = new Document_id();
+        document_id2.setDomain(document_id_domain);
+        document_id2.setId("doc-id-2");
+        Document_id document_id3 = new Document_id();
+        document_id3.setDomain(document_id_domain);
+        document_id3.setId("doc-id-3");
+
+        document1_v0.setPrimary_document_id(document_id1);
+        document2_v0.setPrimary_document_id(document_id2);
+        document3_v2.setPrimary_document_id(document_id3);
+        //end handle new document-id's
+
         documentRepository.save(document1_v0);
         documentRepository.save(document2_v0);
         documentRepository.save(document3_v0);
@@ -84,16 +102,18 @@ public class DocumentControllerTest {
 
         mockMvc.perform(get("/api/documents"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[?(@.document_id=='shouldBeReturned1')]").exists()) //search in all returned documents
-                .andExpect(jsonPath("$[?(@.document_id=='shouldBeReturned2')]").exists()) //for the given document_id
-                .andExpect(jsonPath("$[?(@.document_id=='shouldBeReturned3')]").exists()) //return this document if true
-                .andExpect(jsonPath("$[?(@.document_id=='thisIsWrong')]").doesNotExist());
+                .andExpect(jsonPath("$[?(@.primary_document_id.id=='doc-id-1')]").exists()) //search in all returned documents
+                .andExpect(jsonPath("$[?(@.primary_document_id.id=='doc-id-2')]").exists()) //for the given document_id
+                .andExpect(jsonPath("$[?(@.primary_document_id.id=='doc-id-3')]").exists()) //return this document if true
+                .andExpect(jsonPath("$[?(@.primary_document_id.id=='this is wrong')]").doesNotExist());
     }
 
     @Test
     public void testCreate() throws Exception {
         Document document = new Document();
-        document.setDocument_id("blubTestId");
+        Document_id document_id = new Document_id();
+        document_id.setId("test-doc-id");
+        document.setPrimary_document_id(document_id);
         External_object_reference eor = new External_object_reference();
         external_object_reference_repository.save(eor);
         HashSet<External_object_reference> eorSet = new HashSet<>();
@@ -105,7 +125,7 @@ public class DocumentControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(document)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.document_id", is("blubTestId")))
+                .andExpect(jsonPath("$.primary_document_id.id", is("test-doc-id")))
                 .andExpect(jsonPath("$.external_object_references[0]").exists())
                 .andExpect(jsonPath("$.external_object_references[1]").doesNotExist())
                 .andExpect(jsonPath("$.language").doesNotExist())
@@ -115,12 +135,14 @@ public class DocumentControllerTest {
     @Test
     public void testFind() throws Exception {
         Document document = new Document();
-        document.setDocument_id("blubId");
+        Document_id document_id = new Document_id();
+        document_id.setId("test-doc-id");
+        document.setPrimary_document_id(document_id);
         documentRepository.save(document);
 
         mockMvc.perform(get("/api/documents/" + document.getGraphId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.document_id", is("blubId")));
+                .andExpect(jsonPath("$.primary_document_id.id", is("test-doc-id")));
     }
 
     @Test
@@ -138,7 +160,9 @@ public class DocumentControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Document document = new Document();
-        document.setDocument_id("blubTestId");
+        Document_id document_id = new Document_id();
+        document_id.setId("test-doc-id");
+        document.setPrimary_document_id(document_id);
         External_object_reference eor = new External_object_reference();
         eor.setDescription("testDescription");
         external_object_reference_repository.save(eor);
@@ -149,14 +173,16 @@ public class DocumentControllerTest {
         ObjectMapper mapper = new ObjectMapper();
 
         Document updatedDocument = new Document();
-        updatedDocument.setDocument_id("updatedId");
+        Document_id document_id_updated = new Document_id();
+        document_id_updated.setId("test-doc-id-updated");
+        updatedDocument.setPrimary_document_id(document_id_updated);
         updatedDocument.setGraphId(document.getGraphId());
 
         mockMvc.perform(post("/api/documents/" + document.getGraphId())
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .param("documentString", mapper.writeValueAsString(updatedDocument)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.document_id", is("updatedId")));
+                .andExpect(jsonPath("$.primary_document_id.id", is("test-doc-id-updated")));
 
         assertThat(documentRepository.findOne(updatedDocument.getGraphId()),
                 is(equalTo(documentRepository.findOne(document.getGraphId()))));

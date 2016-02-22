@@ -2,6 +2,7 @@ package org.blub.controller;
 
 import org.blub.Application;
 import org.blub.domain.Document;
+import org.blub.domain.Document_id;
 import org.blub.repository.DocumentRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,11 +75,13 @@ public class VersionControllerTest {
     @Test
     public void testGetOneVersion() throws Exception {
         Document document = new Document();
-        document.setDocument_id("blubId");
+        Document_id document_id = new Document_id();
+        document_id.setId("test-doc-id");
+        document.setPrimary_document_id(document_id);
         documentRepository.save(document);
 
         mockMvc.perform(get("/api/versionDetail/" + document.getGraphId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.document_id", is("blubId")));
+                .andExpect(jsonPath("$.primary_document_id.id", is("test-doc-id")));
     }
 }
