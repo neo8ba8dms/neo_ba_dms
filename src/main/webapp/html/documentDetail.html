@@ -8,7 +8,7 @@
     <button ng-show="isUpdateMode" ui-sref="documents" class="btn btn-default">zurück</button>
     <button ng-show="isUpdateMode" class="btn btn-default" ng-click="updateDocument()">update</button>
 
-    <h2 ng-show="isVersionHistoryMode">Dokumentenversion(nur ansehbar) für: {{document.document_id}} </h2>
+    <h2 ng-show="isVersionHistoryMode">Dokumentenversion(nur ansehbar) für: {{document.primary_document_id.id}} </h2>
     <button ng-show="isVersionHistoryMode" ui-sref="documents" class="btn btn-default">zurück zur Dokumentenliste</button>
     <!--end main-state-dependend config-->
     <!--some more config needed below-->
@@ -16,7 +16,10 @@
     <form name="documentDetailForm" role="form" novalidate>
         <hr size="10">
         <label>ID: </label>
-        <input type="text" ng-model="document.document_id">
+        <input type="text" ng-model="document.primary_document_id.id">
+        <br>
+        <label>Domäne der Dokumentenid: </label>
+        <input type="text" ng-model="document.primary_document_id.domain.id">
 
         <div style="background-color: lightgrey">
             <label>externe Objekte: </label></br>
@@ -52,7 +55,7 @@
                 <tbody>
                 <tr ng-repeat="rel in document.document_relationships">
                     <td>{{rel.relation_type}}</td>
-                    <td>{{rel.relating_document.document_id}}</td>
+                    <td>{{rel.relating_document.primary_document_id.id}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -111,7 +114,7 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="doc in listOfRecentDocumentVersions">
-                                        <td>{{doc.document_id}}</td>
+                                        <td>{{doc.primary_document_id.id}}</td>
                                         <td>
                                             <input type="radio" ng-model="tmpRelationship.relating_document" ng-value="doc">
                                         </td>

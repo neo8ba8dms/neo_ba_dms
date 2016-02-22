@@ -35,7 +35,7 @@ public class DocumentController {
     public Document create(@RequestBody Document document){
         Timestamp timestamp = new Timestamp(new Date().getTime());
         document.setCreated_at(timestamp);
-        documentRepository.save(document, 1);
+        documentRepository.save(document);
         return documentRepository.findOne(document.getGraphId(), 1);
     }
 

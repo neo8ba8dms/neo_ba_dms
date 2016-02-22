@@ -16,7 +16,7 @@
             <tbody>
                 <tr ng-repeat="doc in documents">
                     <td>
-                        <a ui-sref="documentDetailsUpdate({id:doc.graphId})">{{doc.document_id}}</a>
+                        <a ui-sref="documentDetailsUpdate({id:doc.graphId})">{{doc.primary_document_id.id}}</a>
                     </td>
                     <td>
                         {{doc.created_at | date:'HH:mm:ss || dd.MM.yyyy'}}

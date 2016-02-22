@@ -12,7 +12,7 @@
             <tbody>
             <tr ng-repeat="doc in versionSet | orderBy:'-created_at'">
                 <td>
-                    <a ui-sref="versionHistoryDetails({documentVersionId:doc.graphId})">{{doc.document_id}}</a>
+                    <a ui-sref="versionHistoryDetails({documentVersionId:doc.graphId})">{{doc.primary_document_id.id}}</a>
                 </td>
                 <td>
                     {{doc.created_at | date:'HH:mm:ss || dd.MM.yyyy'}}
