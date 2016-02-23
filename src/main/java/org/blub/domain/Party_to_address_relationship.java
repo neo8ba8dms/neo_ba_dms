@@ -5,6 +5,12 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+
+/*
+This class is not being used, but remains for documentation purposes.
+Pressing the app into the way of the 82045 is here especially difficult.
+The better solution is relating the party to the subclasses of Address.
+ */
 @RelationshipEntity(type = "relFromPartyToAddress")
 public class Party_to_address_relationship {
 
