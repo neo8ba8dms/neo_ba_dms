@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('documents', {
             url: '/documents',
             templateUrl: 'html/documents.html',
-            controller: 'documentOverviewController',
+            controller: 'documentOverviewController'
         })
         .state('documentDetailsUpdate', {
             url: '/documents/{id}',
@@ -44,6 +44,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/versionHistoryDetails/{documentVersionId}',
             templateUrl: 'html/documentDetail.html',
             controller: 'versionHistoryDetailsController'
+        })
+        .state('persons', {
+            url: '/person',
+            templateUrl: 'html/persons.html',
+            controller: 'personsController'
+        })
+        .state('personDetails', {
+            url: '/person/{id}',
+            templateUrl: 'html/personDetails.html',
+            controller: 'personDetailsController'
         });
 
     $urlRouterProvider.otherwise('home');
