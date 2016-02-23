@@ -2,6 +2,9 @@ angular.module('dmsApp').controller('organisationController', function($scope, $
 
     $scope.organisations = [];
     $scope.organisation = {};
+    $scope.tmp_postal_address = {};
+    $scope.tmp_electronic_address = {};
+    $scope.tmp_physical_address = {};
 
     $scope.loadOrganisations = function(){
         organisationService.query(function(organisations){
@@ -10,10 +13,17 @@ angular.module('dmsApp').controller('organisationController', function($scope, $
     };
 
     $scope.createNewOrganisation = function(){
+        $scope.organisation.postal_address = $scope.tmp_postal_address;
+        $scope.organisation.electronic_address = $scope.tmp_electronic_address;
+        $scope.organisation.physical_address = $scope.tmp_physical_address;
+
         organisationService.save($scope.organisation, function(){
             $('#createOrganisationModal').modal('hide');
             $scope.loadOrganisations();
             $scope.organisation = {};
+            $scope.tmp_postal_address = {};
+            $scope.tmp_electronic_address = {};
+            $scope.tmp_physical_address = {};
         });
     };
     $scope.delete = function(id){

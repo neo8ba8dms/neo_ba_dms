@@ -12,7 +12,51 @@
                             <label class="col-sm-3">Name der Organisation: </label>
                             <input type="text" ng-model="organisation.name">
                         </div>
-
+                        <div style="background-color: lightgrey">
+                            <h3>Postaddresse</h3>
+                            <div class="form-group">
+                                <label class="col-sm-3">Postfach: </label>
+                                <input type="text" ng-model="tmp_postal_address.postal_box">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Postleitzahl: </label>
+                                <input type="text" ng-model="tmp_postal_address.postal_code">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Land: </label>
+                                <input type="text" ng-model="tmp_postal_address.country">
+                            </div>
+                        </div>
+                        <div style="background-color: lightgrey">
+                            <h3>Elektronische Addresse:</h3>
+                            <div class="form-group">
+                                <label class="col-sm-3">Telefon: </label>
+                                <input type="text" ng-model="tmp_electronic_address.telephone_number">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">e-Mail: </label>
+                                <input type="text" ng-model="tmp_electronic_address.electronic_mail_address">
+                            </div>
+                        </div>
+                        <div style="background-color: lightgrey">
+                            <h3>Physikalische Anschrift:</h3>
+                            <div class="form-group">
+                                <label class="col-sm-3">Straße: </label>
+                                <input type="text" ng-model="tmp_physical_address.street">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Straßennummer: </label>
+                                <input type="text" ng-model="tmp_physical_address.street_number">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Postleitzahl: </label>
+                                <input type="text" ng-model="tmp_physical_address.postal_code">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Stadt: </label>
+                                <input type="text" ng-model="tmp_physical_address.town">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
