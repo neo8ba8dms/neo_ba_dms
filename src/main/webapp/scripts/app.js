@@ -54,6 +54,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/person/{id}',
             templateUrl: 'html/personDetails.html',
             controller: 'personDetailsController'
+        })
+        .state('organisations', {
+            url: '/organisation',
+            templateUrl: 'html/organisations.html',
+            controller: 'organisationController'
+        })
+        .state('organisationDetails', {
+            url: '/organisation/{id}',
+            templateUrl: 'html/organisationDetails.html',
+            controller: 'organisationDetailsController'
         });
 
     $urlRouterProvider.otherwise('home');

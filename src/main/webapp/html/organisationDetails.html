@@ -1,0 +1,15 @@
+<div>
+    <h2>
+        Details für die Organisation:
+    </h2>
+    <form class="form-horizontal" name="organisationDetailForm" role="form" novalidate>
+        <button ui-sref="organisations" class="btn btn-default">zurück</button>
+        <button type="submit" class="btn btn-default" ng-click="update()">update</button>
+
+        <hr size="10">
+        <div class="form-group">
+            <label class="col-sm-1">Name der Organisation: </label>
+            <input type="text" ng-model="organisation.name">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+<div>
+    <h1>Hier sehen sie die Übersicht für Organisationen.</h1>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createOrganisationModal">
+        neue Organisation anlegen
+    </button>
+    <div class="modal fade" id="createOrganisationModal" role="dialog" aria-labelledby="organisationLabel" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" name="organisationForm" novalidate ng-submit="createNewOrganisation()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3">Name der Organisation: </label>
+                            <input type="text" ng-model="organisation.name">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="submit" class="btn btn-default">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name der Organisation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="organisation in organisations">
+                <td>
+                    <a ui-sref="organisationDetails({id:organisation.graphId})">{{organisation.name}}</a>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-default" ng-click="delete(organisation.graphId)">löschen</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
