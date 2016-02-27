@@ -18,6 +18,8 @@ public abstract class Party {
     @Relationship(type = "relFromPartyToPhysicalAddress")
     private Physical_address physical_address;
 
+    //private Set<Party_relationship> party_relations; deleted because of decision to handle relations concrete
+
     public Long getGraphId() {
         return graphId;
     }
@@ -57,12 +59,21 @@ public abstract class Party {
 
         Party party = (Party) o;
 
-        return graphId != null ? graphId.equals(party.graphId) : party.graphId == null;
+        if (graphId != null ? !graphId.equals(party.graphId) : party.graphId != null) return false;
+        if (postal_address != null ? !postal_address.equals(party.postal_address) : party.postal_address != null)
+            return false;
+        if (electronic_address != null ? !electronic_address.equals(party.electronic_address) : party.electronic_address != null)
+            return false;
+        return physical_address != null ? physical_address.equals(party.physical_address) : party.physical_address == null;
 
     }
 
     @Override
     public int hashCode() {
-        return graphId != null ? graphId.hashCode() : 0;
+        int result = graphId != null ? graphId.hashCode() : 0;
+        result = 31 * result + (postal_address != null ? postal_address.hashCode() : 0);
+        result = 31 * result + (electronic_address != null ? electronic_address.hashCode() : 0);
+        result = 31 * result + (physical_address != null ? physical_address.hashCode() : 0);
+        return result;
     }
 }

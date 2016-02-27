@@ -1,10 +1,12 @@
-angular.module('dmsApp').controller('organisationController', function($scope, $state, organisationService) {
+angular.module('dmsApp').controller('organisationController', function($scope, $state, organisationService, personService) {
 
     $scope.organisations = [];
     $scope.organisation = {};
     $scope.tmp_postal_address = {};
     $scope.tmp_electronic_address = {};
     $scope.tmp_physical_address = {};
+    $scope.tmpRelationship = {};
+    $scope.persons = [];
 
     $scope.loadOrganisations = function(){
         organisationService.query(function(organisations){
@@ -16,6 +18,12 @@ angular.module('dmsApp').controller('organisationController', function($scope, $
         $scope.organisation.postal_address = $scope.tmp_postal_address;
         $scope.organisation.electronic_address = $scope.tmp_electronic_address;
         $scope.organisation.physical_address = $scope.tmp_physical_address;
+        if(!$scope.organisation.organisation_person_relationships){
+            $scope.organisation.organisation_person_relationships = [];
+        }
+        if(!$scope.organisation.organisation_organisation_relationships){
+            $scope.organisation.organisation_organisation_relationships = [];
+        }
 
         organisationService.save($scope.organisation, function(){
             $('#createOrganisationModal').modal('hide');
