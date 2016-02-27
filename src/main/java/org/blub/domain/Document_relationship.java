@@ -1,9 +1,12 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.*;
 
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @RelationshipEntity(type = "relFromDocumentToDocument")
 public class Document_relationship {
 

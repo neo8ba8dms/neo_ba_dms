@@ -1,9 +1,12 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity //gives extending entities the additional label: ":Party"
 public abstract class Party {
 

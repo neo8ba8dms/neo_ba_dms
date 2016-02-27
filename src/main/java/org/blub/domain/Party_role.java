@@ -1,11 +1,14 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.Set;
 
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
 public class Party_role {
 

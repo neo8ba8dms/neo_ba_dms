@@ -7,7 +7,13 @@ angular.module('dmsApp').factory('organisationService', function($resource){
                 var shouldBeDecoded = JSOG.parse(data);
                 console.log(shouldBeDecoded);
                 return shouldBeDecoded;
-            }}
+            }},
+        query: {transformResponse: function(data){
+            var shouldBeDecoded = JSOG.parse(data);
+            console.log(shouldBeDecoded);
+            return shouldBeDecoded;
+        },isArray:true}
+
     });
 
 

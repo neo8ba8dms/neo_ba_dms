@@ -1,5 +1,7 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
@@ -12,6 +14,7 @@ This would be a great candidate for a non-nodeEntity-class, but SDN does not sup
 https://github.com/neo4j/neo4j-ogm/issues/57
 Therefore I will model all domain-objects as nodes(or relationships).
  */
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
 public class Document_id_domain {
 

@@ -1,10 +1,12 @@
 package org.blub.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @RelationshipEntity(type = "relFromPersonToPerson")
 public class Person_person_relationship extends Party_relationship{
 

@@ -1,6 +1,8 @@
 package org.blub.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
@@ -12,6 +14,7 @@ One part of the solution is to make this class abstract and handle concrete rela
 The probably better solution would be to delete this class and just use annotations for the concrete relationships.
 But since staying close to the 82045 is a big part of this work, this is the way to go.
  */
+@JsonIdentityInfo(generator=JSOGGenerator.class)
 @RelationshipEntity(type = "relFromPartyToParty")
 public abstract class Party_relationship {
 
