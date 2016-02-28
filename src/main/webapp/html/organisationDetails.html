@@ -56,5 +56,94 @@
                 <input type="text" ng-model="organisation.physical_address.town">
             </div>
         </div>
+        <div>
+            <label>Beziehungen zwischen dieser Organisation und anderen Organisationen(keine Duplikate):</label>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="organisation in organisation.organisation_organisation_relationships">
+                    <td>{{organisation.relating_party.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <label>Beziehungen zwischen dieser Organisation und Personen(keine Duplikate):</label>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="person in organisation.organisation_person_relationships">
+                    <td>{{person.relating_party.first_name}}</td>
+                    <td>{{person.relating_party.last_name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal fade" id="createNewOrganisationOrganisationRelationshipModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div>
+                            <label>Organisation zu der Beziehung hergestellt wird:</label>
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr ng-repeat="organisation in organisations">
+                                    <td>{{organisation.name}}</td>
+                                    <td>
+                                        <input type="radio" ng-model="tmpRelationship.relating_party" ng-value="organisation">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                        <button type="button" class="btn btn-default" ng-click="createNewOrganisationOrganisationRelationship()">save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="createNewOrganisationPersonRelationshipModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div>
+                            <label>Person zu der Beziehung hergestellt wird:</label>
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr ng-repeat="person in persons">
+                                    <td>{{person.first_name}}</td>
+                                    <td>{{person.last_name}}</td>
+                                    <td>
+                                        <input type="radio" ng-model="tmpRelationship.relating_party" ng-value="person">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                        <button type="button" class="btn btn-default" ng-click="createNewOrganisationPersonRelationship()">save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewOrganisationPersonRelationshipModal" ng-click="showOrganisationPersonRelationsModal()">
+            neue Beziehung zu einer Person anlegen
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewOrganisationOrganisationRelationshipModal" ng-click="showOrganisationOrganisationRelationsModal()">
+            neue Beziehung zu anderer Organisation anlegen
+        </button>
     </form>
 </div>
