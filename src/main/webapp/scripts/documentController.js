@@ -64,6 +64,9 @@ angular.module('dmsApp').controller('documentDetailsUpdateController', function(
     };
 
     $scope.updateDocument = function(){
+        if(!$scope.document.document_relationships){
+            $scope.document.document_relationships = [];
+        }
         var uploadUrl = "/api/documents/" + $stateParams.id;
 
         var tmpFile = $scope.document.file; //save to add after angular.copy //probably better solution possible
@@ -120,6 +123,9 @@ angular.module('dmsApp').controller('documentDetailsCreateController', function(
     $scope.showNewDocument = false;
 
     $scope.createNewDocument = function(){
+        if(!$scope.document.document_relationships){
+            $scope.document.document_relationships = [];
+        }
         documentService.save($scope.document, function(response){
             $scope.showNewDocument = true;
             $scope.document = {};

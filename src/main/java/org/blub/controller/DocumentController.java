@@ -33,6 +33,10 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public Document create(@RequestBody Document document){
+        for(Document_relationship rel:document.getDocument_relationships()){
+            rel.setRelates_document(document);
+            rel.setRelating_document(documentRepository.findOne(rel.getRelating_document().getGraphId()));
+        }
         Timestamp timestamp = new Timestamp(new Date().getTime());
         document.setCreated_at(timestamp);
         documentRepository.save(document);
@@ -101,7 +105,8 @@ public class DocumentController {
             for(Document_relationship rel:recievedDocument.getDocument_relationships()){
                 Document_relationship newRel = new Document_relationship();
                 newRel.setRelates_document(newDocument);
-                newRel.setRelating_document(rel.getRelating_document());
+                //newRel.setRelating_document(rel.getRelating_document());
+                newRel.setRelating_document(documentRepository.findOne(rel.getRelating_document().getGraphId()));
                 newRel.setRelation_type(rel.getRelation_type());
                 documentRelationships.add(newRel);
             }
