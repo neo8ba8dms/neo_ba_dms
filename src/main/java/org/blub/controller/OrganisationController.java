@@ -5,6 +5,7 @@ import org.blub.domain.Organisation;
 import org.blub.domain.Organisation_organisation_relationship;
 import org.blub.domain.Organisation_person_relationship;
 import org.blub.repository.OrganisationRepository;
+import org.blub.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,9 @@ public class OrganisationController {
     @Autowired
     private OrganisationRepository organisationRepository;
 
+    @Autowired
+    private PersonRepository personRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Organisation> list() {
         //fixes an error, where on first access here an Organisation gets returned multiple times, on following access normal
@@ -28,9 +32,11 @@ public class OrganisationController {
     public Organisation create(@RequestBody Organisation organisation){
         for(Organisation_person_relationship rel:organisation.getOrganisation_person_relationships()){
             rel.setRelates_party(organisation);
+            rel.setRelating_party(personRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         for(Organisation_organisation_relationship rel:organisation.getOrganisation_organisation_relationships()){
             rel.setRelates_party(organisation);
+            rel.setRelating_party(organisationRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         organisationRepository.save(organisation, 1);
         return organisationRepository.findOne(organisation.getGraphId(), 1);
@@ -53,9 +59,11 @@ public class OrganisationController {
         }
         for(Organisation_person_relationship rel:organisation.getOrganisation_person_relationships()){
             rel.setRelates_party(organisation);
+            rel.setRelating_party(personRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         for(Organisation_organisation_relationship rel:organisation.getOrganisation_organisation_relationships()){
             rel.setRelates_party(organisation);
+            rel.setRelating_party(organisationRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         organisationRepository.save(organisation, 1);
         return organisationRepository.findOne(id, 1);

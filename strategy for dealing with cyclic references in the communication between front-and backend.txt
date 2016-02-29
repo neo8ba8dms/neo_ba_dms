@@ -1,0 +1,19 @@
+Cyclic dependency-errors have so far been the most demanding and annoying issues in developing this app.
+
+After a while I found the JSOG-project which did it partly:
+- for get and query-requests the backend sends JSOG and in the frontend-services it gets transformed back into JSON
+- for writing requests JSOG does not work, because the JSOG.encode-method does nothing
+
+Because I lack the frontend-skills to properly debug this I decided to do the following:
+- in the frontend-services I will transform(reduce) the requests
+- in the backend I will deal with the changes
+
+frontend:
+- objects that have relationships look like so: "(original)-[relationship]->(refered object)"
+- the refered object needs to be only represented by its graphId everything else can be infered in the backend
+- therefore I will reduce the refered object in every relationship, that has the potential to have cyclic dependencies, to the graphId
+
+backend:
+- I will load all objects by graphId and set them where they belong, then I will proceed normally
+
+This may lead to very hard to find errors and should in any realistic scenario be thought through very deeply.
