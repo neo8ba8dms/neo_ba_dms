@@ -132,7 +132,9 @@ angular.module('dmsApp').controller('organisationDetailsController', function($s
         if(!$scope.organisation.organisation_person_relationships){
             $scope.organisation.organisation_person_relationships = [];
         }
-        organisationService.update($scope.organisation);
+        organisationService.update($scope.organisation, function(response){
+            $scope.organisation = response;
+        });
     };
 
     $scope.createNewOrganisationOrganisationRelationship = function(){

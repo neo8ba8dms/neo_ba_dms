@@ -119,11 +119,39 @@
                                     </table>
                                 </div>
                             </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
-                        <button type="submit" class="btn btn-default">save</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewOrganisationOrganisationRelationship()">save</button>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
+                <div class="modal fade" id="createNewOrganisationPersonRelationshipModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div>
+                                    <label>Person zu der Beziehung hergestellt wird:</label>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="person in persons">
+                                            <td>{{person.first_name}}</td>
+                                            <td>{{person.last_name}}</td>
+                                            <td>
+                                                <input type="radio" ng-model="tmpRelationship.relating_party" ng-value="person">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewOrganisationPersonRelationship()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

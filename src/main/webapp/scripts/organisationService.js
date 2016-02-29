@@ -22,7 +22,9 @@ angular.module('dmsApp').factory('organisationService', function($resource){
                 //end handle reduce relationship-endnotes to graphId
                 console.log(organisation);
                 return angular.toJson(organisation);
-        }},
+        }, transformResponse: function(data){
+                return JSOG.parse(data);
+            }},
         save: {method: 'POST',
             transformRequest: function(organisation) {
                 console.log(organisation);
