@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import org.blub.domain.Person;
 import org.blub.domain.Person_organisation_relationship;
 import org.blub.domain.Person_person_relationship;
+import org.blub.repository.OrganisationRepository;
 import org.blub.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private OrganisationRepository organisationRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Person> list() {
         //fixes an error, where on first access here a Person gets returned multiple times, on following access normal
@@ -28,9 +32,11 @@ public class PersonController {
     public Person create(@RequestBody Person person){
         for(Person_person_relationship rel:person.getPerson_person_relationships()){
             rel.setRelates_party(person);
+            rel.setRelating_party(personRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         for(Person_organisation_relationship rel:person.getPerson_organisation_relationships()){
             rel.setRelates_party(person);
+            rel.setRelating_party(organisationRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         personRepository.save(person, 1);
         return personRepository.findOne(person.getGraphId(), 1);
@@ -53,9 +59,11 @@ public class PersonController {
         }
         for(Person_person_relationship rel:person.getPerson_person_relationships()){
             rel.setRelates_party(person);
+            rel.setRelating_party(personRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         for(Person_organisation_relationship rel:person.getPerson_organisation_relationships()){
             rel.setRelates_party(person);
+            rel.setRelating_party(organisationRepository.findOne(rel.getRelating_party().getGraphId()));
         }
         personRepository.save(person, 1);
         return personRepository.findOne(id, 1);

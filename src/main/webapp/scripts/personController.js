@@ -134,7 +134,9 @@ angular.module('dmsApp').controller('personDetailsController', function($scope, 
         if(!$scope.person.person_organisation_relationships){
             $scope.person.person_organisation_relationships = [];
         }
-        personService.update($scope.person);
+        personService.update($scope.person, function(response){
+            $scope.person = response;
+        });
     };
 
     $scope.createNewPersonPersonRelationship = function(){
