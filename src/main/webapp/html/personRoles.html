@@ -1,0 +1,147 @@
+<div>
+    <h1>Hier sehen sie die Übersicht für Rollen, die eine Person haben kann.</h1>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createPersonRoleModal">
+        neue Rolle anlegen
+    </button>
+    <div class="modal fade" id="createPersonRoleModal" role="dialog" aria-labelledby="personLabel" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" name="personRoleForm" novalidate ng-submit="createNewPersonRole()">
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-3">Rollentyp: </label>
+                                <select ng-model="personRole.role">
+                                    <option value="AUTHOR">AUTHOR</option>
+                                    <option value="CREATOR">CREATOR</option>
+                                    <option value="CUSTODIAN">CUSTODIAN</option>
+                                    <option value="CUSTOMER">CUSTOMER</option>
+                                    <option value="EDITOR">EDITOR</option>
+                                    <option value="INSPECTOR">INSPECTOR</option>
+                                    <option value="LOCAL_REPRESENTATIVE">LOCAL_REPRESENTATIVE</option>
+                                    <option value="MANUFACTURER">MANUFACTURER</option>
+                                    <option value="OPERATOR">OPERATOR</option>
+                                    <option value="OWNER">OWNER</option>
+                                    <option value="SUPPLIER">SUPPLIER</option>
+                                    <option value="VENDOR">VENDOR</option>
+                                    <option value="COPYRIGHT_HOLDER">COPYRIGHT_HOLDER</option>
+                                    <option value="PATENT_HOLDER">PATENT_HOLDER</option>
+                                    <option value="LICENCE_HOLDER">LICENCE_HOLDER</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewPersonRoleDocumentRelationshipModal" ng-click="showPersonRoleDocumentRelationsModal()">
+                            neue Beziehung zu Dokument anlegen
+                        </button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewPersonRolePersonRelationshipModal" ng-click="showPersonRolePersonRelationsModal()">
+                            neue Beziehung zu einer Person anlegen
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="submit" class="btn btn-default">save</button>
+                    </div>
+                </form>
+                <div>
+                    <label>Beziehungenzu Dokumenten:</label>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="doc in personRole.referes_to">
+                            <td>{{doc.primary_document_id.id}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <label>Referenzierte Person:</label>
+                    <div>{{personRole.is_role_of.first_name}} {{personRole.is_role_of.last_name}}</div>
+                </div>
+                <div class="modal fade" id="createNewPersonRoleDocumentRelationshipModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div>
+                                    <label>Dokument zu dem eine Beziehung hergestellt wird:</label>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="doc in documents">
+                                            <td>{{doc.primary_document_id.id}}</td>
+                                            <td>
+                                                <input type="radio" ng-model="tmp.document" ng-value="doc">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewPersonRoleDocumentRelationship()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="createNewPersonRolePersonRelationshipModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div>
+                                    <label>Person zu der Beziehung hergestellt wird:</label>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="person in persons">
+                                            <td>{{person.first_name}} {{person.last_name}}</td>
+                                            <td>
+                                                <input type="radio" ng-model="tmp.person" ng-value="person">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewPersonRolePersonRelationship()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>typ</th>
+                <th>referenzierte Person</th>
+                <th>referenzierte Dokumente</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="role in personRoles">
+                <td>
+                    {{role.role}}
+                </td>
+                <td>
+                   {{role.is_role_of.first_name}} {{role.is_role_of.last_name}}
+                </td>
+                <td>
+                    <span ng-repeat="refDoc in role.referes_to">
+                            {{refDoc.primary_document_id.id}}
+                    </span>
+                </td>
+                <td>
+                    <a ui-sref="personRoleDetails({id:role.graphId})">
+                        <button class="btn btn-default">Details</button>
+                    </a>
+                    <button type="submit" class="btn btn-default" ng-click="delete(role.graphId)">löschen</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

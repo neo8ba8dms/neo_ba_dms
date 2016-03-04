@@ -18,7 +18,6 @@ public class Party_role {
     @Relationship(type = "relFromPartyRoleToDocument")
     private Set<Document> referes_to;
 
-    @Relationship(type = "is_role_of")
     private Party is_role_of;
 
     public Long getGraphId() {
