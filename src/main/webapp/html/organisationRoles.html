@@ -1,0 +1,147 @@
+<div>
+    <h1>Hier sehen sie die Übersicht für Rollen, die eine Organisation haben kann.</h1>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createOrganisationRoleModal">
+        neue Rolle anlegen
+    </button>
+    <div class="modal fade" id="createOrganisationRoleModal" role="dialog" aria-labelledby="organisationLabel" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" name="organisationRoleForm" novalidate ng-submit="createNewOrganisationRole()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3">Rollentyp: </label>
+                            <select ng-model="organisationRole.role">
+                                <option value="AUTHOR">AUTHOR</option>
+                                <option value="CREATOR">CREATOR</option>
+                                <option value="CUSTODIAN">CUSTODIAN</option>
+                                <option value="CUSTOMER">CUSTOMER</option>
+                                <option value="EDITOR">EDITOR</option>
+                                <option value="INSPECTOR">INSPECTOR</option>
+                                <option value="LOCAL_REPRESENTATIVE">LOCAL_REPRESENTATIVE</option>
+                                <option value="MANUFACTURER">MANUFACTURER</option>
+                                <option value="OPERATOR">OPERATOR</option>
+                                <option value="OWNER">OWNER</option>
+                                <option value="SUPPLIER">SUPPLIER</option>
+                                <option value="VENDOR">VENDOR</option>
+                                <option value="COPYRIGHT_HOLDER">COPYRIGHT_HOLDER</option>
+                                <option value="PATENT_HOLDER">PATENT_HOLDER</option>
+                                <option value="LICENCE_HOLDER">LICENCE_HOLDER</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewOrganisationRoleDocumentRelationshipModal" ng-click="showOrganisationRoleDocumentRelationsModal()">
+                            neue Beziehung zu Dokument anlegen
+                        </button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createNewOrganisationRoleOrganisationRelationshipModal" ng-click="showOrganisationRoleOrganisationRelationsModal()">
+                            referenzierte Organisation ändern
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <button type="submit" class="btn btn-default">save</button>
+                    </div>
+                </form>
+                <div>
+                    <label>Beziehungenzu Dokumenten:</label>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="doc in organisationRole.referes_to">
+                            <td>{{doc.primary_document_id.id}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <label>Referenzierte Organisation:</label>
+                    <div>{{organisationRole.is_role_of.name}}</div>
+                </div>
+                <div class="modal fade" id="createNewOrganisationRoleDocumentRelationshipModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div>
+                                    <label>Dokument zu dem eine Beziehung hergestellt wird:</label>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="doc in documents">
+                                            <td>{{doc.primary_document_id.id}}</td>
+                                            <td>
+                                                <input type="radio" ng-model="tmp.document" ng-value="doc">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewOrganisationRoleDocumentRelationship()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="createNewOrganisationRoleOrganisationRelationshipModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div>
+                                    <label>Organisation zu der Beziehung hergestellt wird:</label>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="organisation in organisations">
+                                            <td>{{organisation.name}}</td>
+                                            <td>
+                                                <input type="radio" ng-model="tmp.organisation" ng-value="organisation">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" ng-click="hideUpperModal()">cancel</button>
+                                <button type="button" class="btn btn-default" ng-click="createNewOrganisationRoleOrganisationRelationship()">save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>typ</th>
+                <th>referenzierte Organisation</th>
+                <th>referenzierte Dokumente</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="role in organisationRoles">
+                <td>
+                    {{role.role}}
+                </td>
+                <td>
+                    {{role.is_role_of.name}}
+                </td>
+                <td>
+                    <span ng-repeat="refDoc in role.referes_to">
+                            {{refDoc.primary_document_id.id}}
+                    </span>
+                </td>
+                <td>
+                    <a ui-sref="organisationRoleDetails({id:role.graphId})">
+                        <button class="btn btn-default">Details</button>
+                    </a>
+                    <button type="submit" class="btn btn-default" ng-click="delete(role.graphId)">löschen</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
