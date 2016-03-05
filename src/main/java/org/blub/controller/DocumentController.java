@@ -116,7 +116,7 @@ public class DocumentController {
 
 
 
-        Document waitResult = documentRepository.save(newDocument, 1); //newDocument.id & documentRelationship.id are generated here
+        Document waitResult = documentRepository.save(newDocument, 2); //newDocument.id & documentRelationship.id are generated here
 
         /*
             Make shure, that there is a newDocument, before saving the old one(not shure if this works or is even necessary).
