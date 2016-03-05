@@ -21,7 +21,7 @@
                     </td>
                     <td>
                         <button type="button" class="btn btn-default" ui-sref="versionHistory({idOfNewestDocument:doc.graphId})">Versionsgeschichte</button>
-                        <a ui-sref="documentDetailsUpdate({idOfNewestDocument:doc.graphId})">
+                        <a ui-sref="documentDetailsUpdate({id:doc.graphId})">
                             <button class="btn btn-default">Details</button>
                         </a>
                         <button type="submit" class="btn btn-default" ng-click="delete(doc.graphId)">löschen</button>
