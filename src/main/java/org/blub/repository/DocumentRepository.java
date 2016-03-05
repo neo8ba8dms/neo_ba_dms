@@ -16,8 +16,8 @@ public interface DocumentRepository extends GraphRepository<Document>{
     Check for all labels in the database with:
     match (n) return distinct(labels(n));
      */
-    @Query(" match (n:Document)-[r:relFromDocumentToDocumentId]->(m:Document_id)" +
-            "-[rdom:relFromDocumentIdToDocumentIdDomain]->(dom)" +
+    @Query("match (n:Document)" +
+            " optional match (n:Document)-[r:relFromDocumentToDocumentId]->(m:Document_id)" +
             " where not((n)-[:referenceToNewVersion]->(:Document)) return *")
     Iterable<Document> allNewestDocumentVersions();
 
