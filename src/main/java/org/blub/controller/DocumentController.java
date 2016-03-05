@@ -1,6 +1,8 @@
 package org.blub.controller;
 
 import org.blub.domain.Document;
+import org.blub.domain.Document_id;
+import org.blub.domain.Document_id_domain;
 import org.blub.domain.Document_relationship;
 import org.blub.repository.DocumentRepository;
 import org.blub.service.DocumentService;
@@ -91,7 +93,10 @@ public class DocumentController {
         }
 
         //new document
-        newDocument.setPrimary_document_id(recievedDocument.getPrimary_document_id());
+        Document_id newDocumentID = new Document_id();
+        newDocumentID.setId(recievedDocument.getPrimary_document_id().getId());
+        newDocumentID.setDomain(recievedDocument.getPrimary_document_id().getDomain());
+        newDocument.setPrimary_document_id(newDocumentID);
         newDocument.setExternal_object_references(recievedDocument.getExternal_object_references());
         newDocument.setCreated_at(timestamp);
         newDocument.setPath_to_file(pathToFileForNewDocument);
