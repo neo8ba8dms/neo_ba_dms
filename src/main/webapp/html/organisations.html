@@ -164,10 +164,11 @@
             </thead>
             <tbody>
             <tr ng-repeat="organisation in organisations">
+                <td>{{organisation.name}}</td>
                 <td>
-                    <a ui-sref="organisationDetails({id:organisation.graphId})">{{organisation.name}}</a>
-                </td>
-                <td>
+                    <a ui-sref="organisationDetails({id:organisation.graphId})">
+                        <button class="btn btn-default">Details</button>
+                    </a>
                     <button type="submit" class="btn btn-default" ng-click="delete(organisation.graphId)">löschen</button>
                 </td>
             </tr>
