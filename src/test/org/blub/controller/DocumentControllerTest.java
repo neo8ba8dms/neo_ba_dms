@@ -2,10 +2,7 @@ package org.blub.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.blub.Application;
-import org.blub.domain.Document;
-import org.blub.domain.Document_id;
-import org.blub.domain.Document_id_domain;
-import org.blub.domain.External_object_reference;
+import org.blub.domain.*;
 import org.blub.repository.DocumentRepository;
 import org.blub.repository.External_object_reference_repository;
 import org.blub.service.DocumentService;
@@ -114,6 +111,9 @@ public class DocumentControllerTest {
         Document_id document_id = new Document_id();
         document_id.setId("test-doc-id");
         document.setPrimary_document_id(document_id);
+
+        //in real app this gets created automatically by marshaller
+        document.setDocument_relationships(new HashSet<Document_relationship>());
         External_object_reference eor = new External_object_reference();
         external_object_reference_repository.save(eor);
         HashSet<External_object_reference> eorSet = new HashSet<>();
