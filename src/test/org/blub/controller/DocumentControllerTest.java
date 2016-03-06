@@ -170,17 +170,20 @@ public class DocumentControllerTest {
         eorSet.add(eor);
         document.setExternal_object_references(eorSet);
         documentRepository.save(document);
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper(); //does it the JSOG-way, but the frontend is sending normal JSON
 
         Document updatedDocument = new Document();
         Document_id document_id_updated = new Document_id();
         document_id_updated.setId("test-doc-id-updated");
+        //document_id_updated.setGraphId(document_id.getGraphId());
         updatedDocument.setPrimary_document_id(document_id_updated);
         updatedDocument.setGraphId(document.getGraphId());
+        String updatedString = mapper.writeValueAsString(updatedDocument);
+        String updatedString2 = updatedString.replaceAll("\"@id\":\"[0-9]+\",", ""); //work-around to get the JSOG out of this String
 
         mockMvc.perform(post("/api/documents/" + document.getGraphId())
                 .contentType(MediaType.MULTIPART_FORM_DATA)
-                .param("documentString", mapper.writeValueAsString(updatedDocument)))
+                .param("documentString", updatedString2))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.primary_document_id.id", is("test-doc-id-updated")));
 
