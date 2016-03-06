@@ -20,7 +20,7 @@ angular.module('dmsApp').controller('personRolesController', function($scope, $s
             $scope.personRole.is_role_of = {};
         }
         personRoleService.save($scope.personRole, function(){
-           $('#createPersonRole').modal('hide');
+           $('#createPersonRoleModal').modal('hide');
             $scope.loadPersonRoles();
             $scope.personRole = {};
         });
