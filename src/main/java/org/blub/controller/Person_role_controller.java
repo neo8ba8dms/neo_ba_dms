@@ -55,10 +55,14 @@ public class Person_role_controller {
         if(null == role.getGraphId()) {
             role.setGraphId(id); //would otherwise create new node in neo4J instead of updating this one
         }
-            for(Document doc:role.getReferes_to()){
-                documentRepository.findOne(doc.getGraphId());
-            }
+        for(Document doc:role.getReferes_to()){
+            documentRepository.findOne(doc.getGraphId());
+        }
+        if(role.getIs_role_of().getGraphId() != null) { //there is a person referenced
             role.setIs_role_of(personRepository.findOne(role.getIs_role_of().getGraphId()));
+        }else{
+            role.setIs_role_of(null); //no person --> no new object/node
+        }
         person_role_repository.save(role, 1);
         return person_role_repository.findOne(id, 1);
     }
