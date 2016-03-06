@@ -95,7 +95,11 @@ public class DocumentController {
         //new document
         Document_id newDocumentID = new Document_id();
         newDocumentID.setId(recievedDocument.getPrimary_document_id().getId());
-        newDocumentID.setDomain(recievedDocument.getPrimary_document_id().getDomain());
+        if(recievedDocument.getPrimary_document_id().getDomain().equals(oldDocument.getPrimary_document_id().getDomain())){
+            newDocumentID.setDomain(oldDocument.getPrimary_document_id().getDomain());
+        }else{
+            newDocumentID.setDomain(recievedDocument.getPrimary_document_id().getDomain());
+        }
         newDocument.setPrimary_document_id(newDocumentID);
         newDocument.setExternal_object_references(recievedDocument.getExternal_object_references());
         newDocument.setCreated_at(timestamp);
