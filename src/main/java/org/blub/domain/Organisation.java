@@ -13,10 +13,10 @@ public class Organisation extends Party{
 
     private String name;
 
-    @Relationship(type = "relFromOrganisationToPerson")
+    @Relationship(type = "relFromOrganisationToPerson", direction = Relationship.OUTGOING)
     private Set<Organisation_person_relationship> organisation_person_relationships;
 
-    @Relationship(type = "relFromOrganisationToOrganisation")
+    @Relationship(type = "relFromOrganisationToOrganisation", direction = Relationship.OUTGOING)
     private Set<Organisation_organisation_relationship> organisation_organisation_relationships;
 
     public String getName() {

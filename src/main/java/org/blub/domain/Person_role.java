@@ -11,10 +11,10 @@ import java.util.Set;
 @NodeEntity
 public class Person_role extends Party_role{
 
-    @Relationship(type = "relFromPersonRoleToDocument")
+    @Relationship(type = "relFromPersonRoleToDocument", direction = Relationship.OUTGOING)
     private Set<Document> referes_to;
 
-    @Relationship(type = "relFromPartyRoleToPerson")
+    @Relationship(type = "relFromPartyRoleToPerson", direction = Relationship.OUTGOING)
     private Person is_role_of;
 
     @Override

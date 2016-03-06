@@ -36,14 +36,14 @@ public class Document {
     Interpretation/implementation: clicking on button "new description" make modal with assosiated attributes.
     Additionally one div to show all descriptions(only assosiated with one version).
      */
-    @Relationship(type = "relFromDocumentToDescription")
+    @Relationship(type = "relFromDocumentToDescription", direction = Relationship.OUTGOING)
     private Set<Description> descriptions;
 
     /*
     In the 82045 this is not meant to be an explicit attribute. I'm going with the SDN way, because it is more graph-like.
     But I'm trying to keep the naming-way of the 82045.
      */
-    @Relationship(type="relFromDocumentToExternalObject")
+    @Relationship(type="relFromDocumentToExternalObject", direction = Relationship.OUTGOING)
     private Set<External_object_reference> external_object_references;
     @JsonIgnore
     @Relationship(type = "referenceToNewVersion", direction = Relationship.OUTGOING)
@@ -56,7 +56,7 @@ public class Document {
     @Relationship(type = "relFromDocumentToDocument", direction = Relationship.OUTGOING)
     private Set<Document_relationship> document_relationships;
 
-    @Relationship(type = "relFromDocumentToDocumentClass")
+    @Relationship(type = "relFromDocumentToDocumentClass", direction = Relationship.OUTGOING)
     private Set<Document_class> classified_as; //values of IEC 61355
     ////////////////////////////////////////////////////////////////////////
 

@@ -12,13 +12,13 @@ public abstract class Party {
 
     @GraphId private Long graphId;
 
-    @Relationship(type = "relFromPartyToPostalAddress")
+    @Relationship(type = "relFromPartyToPostalAddress", direction = Relationship.OUTGOING)
     private Postal_address postal_address;
 
-    @Relationship(type = "relFromPartyToElectronicAddress")
+    @Relationship(type = "relFromPartyToElectronicAddress", direction = Relationship.OUTGOING)
     private Electronic_address electronic_address;
 
-    @Relationship(type = "relFromPartyToPhysicalAddress")
+    @Relationship(type = "relFromPartyToPhysicalAddress", direction = Relationship.OUTGOING)
     private Physical_address physical_address;
 
     //private Set<Party_relationship> party_relations; deleted because of decision to handle relations concrete

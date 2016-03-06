@@ -15,7 +15,7 @@ public class Party_role {
     @GraphId private Long graphId;
     private Role_type role;
 
-    @Relationship(type = "relFromPartyRoleToDocument")
+    @Relationship(type = "relFromPartyRoleToDocument", direction = Relationship.OUTGOING)
     private Set<Document> referes_to;
 
     private Party is_role_of;

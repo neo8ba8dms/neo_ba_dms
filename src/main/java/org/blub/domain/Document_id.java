@@ -14,7 +14,7 @@ public class Document_id {
     @GraphId Long graphId;
     private String id;
 
-    @Relationship(type = "relFromDocumentIdToDocumentIdDomain")
+    @Relationship(type = "relFromDocumentIdToDocumentIdDomain", direction = Relationship.OUTGOING)
     private Document_id_domain domain;
 
     public Long getGraphId() {

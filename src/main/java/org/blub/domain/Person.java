@@ -14,10 +14,10 @@ public class Person extends Party{
     private String last_name;
     private String first_name;
 
-    @Relationship(type = "relFromPersonToPerson")
+    @Relationship(type = "relFromPersonToPerson", direction = Relationship.OUTGOING)
     private Set<Person_person_relationship> person_person_relationships;
 
-    @Relationship(type = "relFromPersonToOrganisation")
+    @Relationship(type = "relFromPersonToOrganisation", direction = Relationship.OUTGOING)
     private Set<Person_organisation_relationship> person_organisation_relationships;
 
     public String getLast_name() {
