@@ -16,7 +16,7 @@ import java.util.Set;
 public class Document {
 
     @GraphId Long graphId; //required for neo4j(must be Long)http://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#__graphid_neo4j_id_field
-    @Relationship(type = "relFromDocumentToDocumentId")
+    @Relationship(type = "relFromDocumentToDocumentId", direction = Relationship.OUTGOING)
     private Document_id primary_document_id; //this is the organisation-internal id
     private String path_to_file;
     private Date created_at;
