@@ -15,8 +15,12 @@ public interface DocumentRepository extends GraphRepository<Document>{
     SDN derives it from the annotated classname of "domain.Document".
     Check for all labels in the database with:
     match (n) return distinct(labels(n));
+
+    When thinking about those kind of problem it's best to not think about graphs, but about matched tripples, that get
+    filtered out by given criterias afterwards.
      */
-    @Query("match (n:Document)-[r*0..1]->(m)  where not((n)-[:referenceToNewVersion]->(:Document)) and not(n=m) return *")
+    @Query("match (n:Document)-[r*0..1]->(m)  where not((n)-[:referenceToNewVersion]->(:Document)) and" +
+            " not(n=m) and n-[]->(m:Document_id) return *")
     Iterable<Document> allNewestDocumentVersions();
 
 

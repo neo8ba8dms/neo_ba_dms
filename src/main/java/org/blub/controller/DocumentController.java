@@ -35,10 +35,6 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public Document create(@RequestBody Document document){
-        for(Document_relationship rel:document.getDocument_relationships()){
-            rel.setRelates_document(document);
-            rel.setRelating_document(documentRepository.findOne(rel.getRelating_document().getGraphId()));
-        }
         Timestamp timestamp = new Timestamp(new Date().getTime());
         document.setCreated_at(timestamp);
         documentRepository.save(document);
