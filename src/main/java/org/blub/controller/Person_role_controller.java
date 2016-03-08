@@ -8,6 +8,8 @@ import org.blub.repository.Person_role_repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+
 @RestController
 @RequestMapping(value = "/api/personRole")
 public class Person_role_controller {
@@ -28,9 +30,11 @@ public class Person_role_controller {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public Person_role create(@RequestBody Person_role role){
+        HashSet<Document> newReferesTo = new HashSet<Document>();
         for(Document doc:role.getReferes_to()){
-            documentRepository.findOne(doc.getGraphId());
+            newReferesTo.add(documentRepository.findOne(doc.getGraphId()));
         }
+        role.setReferes_to(newReferesTo);
         if(role.getIs_role_of().getGraphId() != null){
             role.setIs_role_of(personRepository.findOne(role.getIs_role_of().getGraphId()));
         }else{
@@ -55,9 +59,11 @@ public class Person_role_controller {
         if(null == role.getGraphId()) {
             role.setGraphId(id); //would otherwise create new node in neo4J instead of updating this one
         }
+        HashSet<Document> newReferesTo = new HashSet<Document>();
         for(Document doc:role.getReferes_to()){
-            documentRepository.findOne(doc.getGraphId());
+            newReferesTo.add(documentRepository.findOne(doc.getGraphId()));
         }
+        role.setReferes_to(newReferesTo);
         if(role.getIs_role_of().getGraphId() != null) { //there is a person referenced
             role.setIs_role_of(personRepository.findOne(role.getIs_role_of().getGraphId()));
         }else{
