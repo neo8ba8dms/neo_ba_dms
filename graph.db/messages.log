@@ -2105,3 +2105,33 @@ Storage files: (filename : modification date - size)
 2016-03-22 03:56:23.447+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [92]:  Check pointing completed
 2016-03-22 03:56:23.447+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
 2016-03-22 03:56:23.447+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-03-22 04:01:23.454+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Starting check pointing...
+2016-03-22 04:01:23.454+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Starting store flush...
+2016-03-22 04:01:23.542+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 93 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 04:01:23.543+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 93 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 04:01:23.584+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Store flush completed
+2016-03-22 04:01:23.584+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Starting appending check point entry into the tx log...
+2016-03-22 04:01:23.616+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Appending check point entry into the tx log completed
+2016-03-22 04:01:23.616+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [93]:  Check pointing completed
+2016-03-22 04:01:23.616+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-03-22 04:01:23.616+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-03-22 04:36:23.663+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Starting check pointing...
+2016-03-22 04:36:23.663+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Starting store flush...
+2016-03-22 04:36:23.786+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 94 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b].
+2016-03-22 04:36:23.788+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 94 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b].
+2016-03-22 04:36:23.863+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Store flush completed
+2016-03-22 04:36:23.863+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Starting appending check point entry into the tx log...
+2016-03-22 04:36:23.894+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Appending check point entry into the tx log completed
+2016-03-22 04:36:23.894+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [94]:  Check pointing completed
+2016-03-22 04:36:23.894+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-03-22 04:36:23.894+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-03-22 04:41:23.900+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Starting check pointing...
+2016-03-22 04:41:23.901+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Starting store flush...
+2016-03-22 04:41:24.017+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 98 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 04:41:24.019+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 98 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 04:41:24.059+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Store flush completed
+2016-03-22 04:41:24.060+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Starting appending check point entry into the tx log...
+2016-03-22 04:41:24.100+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Appending check point entry into the tx log completed
+2016-03-22 04:41:24.100+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [98]:  Check pointing completed
+2016-03-22 04:41:24.100+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-03-22 04:41:24.100+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
