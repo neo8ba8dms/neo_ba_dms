@@ -2043,3 +2043,13 @@ Storage files: (filename : modification date - size)
 2016-03-22 03:26:22.256+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [78]:  Check pointing completed
 2016-03-22 03:26:22.256+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
 2016-03-22 03:26:22.256+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-03-22 03:31:22.264+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Starting check pointing...
+2016-03-22 03:31:22.264+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Starting store flush...
+2016-03-22 03:31:22.370+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 81 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 03:31:22.373+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 81 to [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.b], from [/home/tob/workspace/neo_ba_dms/graph.db/neostore.counts.db.a].
+2016-03-22 03:31:22.463+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Store flush completed
+2016-03-22 03:31:22.464+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Starting appending check point entry into the tx log...
+2016-03-22 03:31:22.502+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Appending check point entry into the tx log completed
+2016-03-22 03:31:22.502+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [81]:  Check pointing completed
+2016-03-22 03:31:22.502+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-03-22 03:31:22.502+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
