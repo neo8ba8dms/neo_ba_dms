@@ -40,7 +40,15 @@ CREATE (:`Postal_address`:`Address`:`UNIQUE IMPORT LABEL` {`UNIQUE IMPORT ID`:37
 CREATE (:`Address`:`Physical_address`:`UNIQUE IMPORT LABEL` {`postal_code`:"04107", `street`:"Großbaumstraße", `street_number`:"11", `town`:"Leipzig", `UNIQUE IMPORT ID`:38});
 CREATE (:`Address`:`Electronic_address`:`UNIQUE IMPORT LABEL` {`telephone_number`:"034199419", `UNIQUE IMPORT ID`:39});
 CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 5", `id`:"eorwea0005", `type`:"Windanlage", `UNIQUE IMPORT ID`:40});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 122", `id`:"eorwea0122", `type`:"Windanlage", `UNIQUE IMPORT ID`:41});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 71", `id`:"eorwea0071", `type`:"Windanlage", `UNIQUE IMPORT ID`:42});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 9", `id`:"eorwea0009", `type`:"Windanlage", `UNIQUE IMPORT ID`:43});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 12", `id`:"eorwea0012", `type`:"Windanlage", `UNIQUE IMPORT ID`:44});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 84", `id`:"eorwea0084", `type`:"Windanlage", `UNIQUE IMPORT ID`:45});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 62", `id`:"eorwea0062", `type`:"Windanlage", `UNIQUE IMPORT ID`:46});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Windenergieanlage 23", `id`:"eorwea0023", `type`:"Windanlage", `UNIQUE IMPORT ID`:47});
 CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Verwaltungsbüroanlage 2", `id`:"eorverw02", `type`:"Verwaltung", `UNIQUE IMPORT ID`:48});
+CREATE (:`External_object_reference`:`UNIQUE IMPORT LABEL` {`description`:"Lagerhaus 5", `id`:"eorlag05", `type`:"Lager", `UNIQUE IMPORT ID`:49});
 CREATE (:`Party`:`Organisation`:`UNIQUE IMPORT LABEL` {`name`:"Anlagenbetreiber Reindorf GmbH", `UNIQUE IMPORT ID`:50});
 CREATE (:`Address`:`Physical_address`:`UNIQUE IMPORT LABEL` {`postal_code`:"04108", `street`:"Industriestraße", `street_number`:"2", `town`:"Leipzig", `UNIQUE IMPORT ID`:51});
 CREATE (:`Postal_address`:`Address`:`UNIQUE IMPORT LABEL` {`UNIQUE IMPORT ID`:52});
