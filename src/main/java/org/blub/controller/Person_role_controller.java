@@ -25,7 +25,7 @@ public class Person_role_controller {
 
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Person_role> list() {
-        return person_role_repository.findAll(1);
+        return person_role_repository.findAll(2);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")

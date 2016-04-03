@@ -24,7 +24,7 @@ public class OrganisationController {
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Organisation> list() {
         //fixes an error, where on first access here an Organisation gets returned multiple times, on following access normal
-        HashSet organisations = Sets.newHashSet(organisationRepository.findAll(1));
+        HashSet organisations = Sets.newHashSet(organisationRepository.findAll(2));
         return organisations;
     }
 
