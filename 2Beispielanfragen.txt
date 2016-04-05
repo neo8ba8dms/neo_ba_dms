@@ -1,0 +1,38 @@
+In welchen Rollen hat eine Person("Thomas Beier") im Zeitraum
+von ("2016-03-30") bis ("2016-04-03T09") mit welchen Dokumenten
+zu tun gehabt? [Die Werte in runden Klammern sind als
+Variablen zu betrachten.]
+******************************************************************
+MATCH   (Thomas:Person) <- [:relFromPersonRoleToPerson] -(Rolle:Person_role)
+        - [:relFromPersonRoleToDocument] - > (Dokument:Document),
+        Dokument - [:relFromDocumentToDescription] -> (Beschreibung:Description),
+        Dokument - [:relFromDocumentToDocumentId] -> (ID:Document_id)
+WHERE   (Thomas.first_name = "Thomas" AND Thomas.last_name = "Beier") AND
+        (Dokument.created_at > "2016-03-30") AND
+        (Dokument.created_at < "2016-04-03T09") // 9 Uhr //change to "...T08" to see difference
+RETURN  Rolle.role AS `Rolle der Person`, ID.id AS `Bearbeitetes Dokument`,
+	    Beschreibung.textual_description AS `Beschreibung des Dokumentes`;
+
+
+
+
+
+
+Welche Personenrollen erstellen mit welcher relativen Häufigkeit welche
+Art(Klassifikation) von Dokument?
+*****************************************************************
+MATCH	    (Rolle:Person_role) - [:relFromPersonRoleToDocument] -> (Dokument:Document)
+		    - [:relFromDocumentToDocumentClass] -> (Klassifikation:Document_class)
+WITH		count(*) AS `allRows`
+MATCH		(Rolle:Person_role) - [:relFromPersonRoleToDocument] -> (Dokument:Document)
+		    - [:relFromDocumentToDocumentClass] -> (Klassifikation:Document_class)
+RETURN		DISTINCT Rolle.role AS `Rolle der Person`, Klassifikation.id AS `Klassifikation nach IEC 61355`,
+		    round((toFloat(count(*))/ toFloat(allRows))*10000) / 100 AS `relative Häufigkeit in %(gerunded)`
+ORDER BY	Rolle.role, Klassifikation.id;
+
+
+
+
+Anmerkungen:
+- die 2. Anfrage ist problematisch in Performancesicht, weil 2-mal das gleiche gematched wird
+- Neo4j hat keine direkte Unterstützung für Datumstypen (link in BA aufnehmen)
