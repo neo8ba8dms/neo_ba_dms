@@ -84,13 +84,13 @@
             <input type="text" ng-model="tmpLanguage">
             <button type="button" class="btn btn-default" ng-click="addLanguage()">hinzufügen</button>
         </div>
-        <div ng-hide="isVersionHistoryMode || isCreateMode">
+        <div ng-hide="isCreateMode">
             <label>Sprachen:</label>
             <div ng-repeat="lang in document.language">
                 <label>{{lang}}</label>
             </div>
         </div>
-        <div ng-hide="isVersionHistoryMode || isCreateMode" style="background-color: lightgrey">
+        <div ng-hide="isCreateMode" style="background-color: lightgrey">
             <label>Dokument-Klassifikation: </label>
             <br>
             <label>Neue Klassifikation hinzufügen: </label>
