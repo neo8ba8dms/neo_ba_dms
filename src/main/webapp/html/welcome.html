@@ -14,4 +14,14 @@
         Wenn 2 Modals offen sind, führt das Klicken außerhalb der Modals dazu, dass der Browser einfriert.
         Zum beheben einfach das Browser-Fenster neu laden.
     </li>
+    <li>
+        Beim laden der Versionsgeschichte wird initial nur die ID des aktuellsten Dokumentes gefunden.
+        Wenn aber auf den Details-Button einer Version ohne angezeigte(geladene) ID geklickt wird und diese
+        Version somit geladen wird, wird diese ID immer beim erneuten laden der Versionsgeschichte korrekt
+        angezeigt(geladen). Dies geschieht auch nach einem Browserneustart. Folglich muss entweder in Neo4J oder SDN
+        eine Art caching stattfinden. Da das zu Erwartende Verhalten wäre das die selbe Anfrage auf den selben
+        Datenbestand immer das selbe Ergebnis liefert, wird der Fehler außerhalb der App angenommen.
+        Da diese Arbeit in erster Linie zum ausprobieren der Technologie und erst danach zur Produktion
+        einer bestmöglich funktionierenden App da ist wurde gegen einen Workaround entschieden.
+    </li>
 </div>
